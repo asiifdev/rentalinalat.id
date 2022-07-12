@@ -7,7 +7,7 @@
                     <ul id="sidebar-menu">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
-                        <li> <a class="" href="{{ url('/dashboard') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        <li> <a class="" href="{{ url('/admin/dashboard') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         <li class="nav-label">Resource</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-file"></i><span class="hide-menu">Products</span></a>
