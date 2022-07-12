@@ -1,27 +1,48 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\ProductController;
+use App\Models\Category;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/dashboard', function () {
+Route::get('/admin/dashboard', function () {
     return view('admin.index');
 });
-Route::get('/admin/category', function () {
-    return view('admin.category.index');
-});
-Route::get('/admin/product', function () {
-    return view('admin.product.index');
-});
+
+// ================================================================== ROUTES KATEGORI ========================================================
+Route::get('/admin/category', [App\Http\Controllers\CategoryController::class,'index']);
+Route::post('/admin/category/create', [App\Http\Controllers\CategoryController::class,'store'])->name('category.add');
+Route::get('/admin/category/edit/[id]', [App\Http\Controllers\CategoryController::class.'edit']);
+Route::post('/admin/category/update/[id]', [App\Http\Controllers\CategoryController::class.'update']);
+Route::resource('admin/category', CategoryController::class);
+// -------------------------------------------------------------------------------------------------------------------------------------------
+
+// ================================================================== ROUTES SUBKATEGORI =====================================================
+Route::get('/admin/subcategory', [App\Http\Controllers\SubCategoryController::class,'index']);
+Route::post('/admin/subcategory/create', [App\Http\Controllers\SubCategoryController::class,'store'])->name('subcategory.add');
+Route::resource('admin/subcategory', SubCategoryController::class);
+
+
+// -------------------------------------------------------------------------------------------------------------------------------------------
+
+// ================================================================== ROUTES PRODUK ==========================================================
+Route::get('/admin/product', [App\Http\Controllers\ProductController::class,'index'])->name('admin.product');
+Route::post('/admin/product/create', [App\Http\Controllers\ProductController::class,'store'])->name('product.add');
+Route::get('/admin/product/edit/[id]', [App\Http\Controllers\ProductController::class.'edit']);
+Route::post('/admin/product/update/[id]', [App\Http\Controllers\ProductController::class.'update']);
+Route::resource('admin/product', ProductController::class);
+// Route::get('subcatories/{id}', [ProductController::class, 'loadSubCategories']);
+Route::get('/ajax-subcat',function () {
+    $cat_id = Category::get('category_id');
+    $subcategories =  DB::table('categories')->where('parent_id','=',$cat_id)->lists('name');
+    return Response::json($subcategories);});
+// -------------------------------------------------------------------------------------------------------------------------------------------
+
+// ================================================================== ROUTES INVOPICES =======================================================
 Route::get('/admin/invoices', function () {
     return view('admin.invoices.index');
 });
+// -------------------------------------------------------------------------------------------------------------------------------------------

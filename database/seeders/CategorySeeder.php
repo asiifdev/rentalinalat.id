@@ -18,23 +18,28 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'Multimedia',
-            'slug' => Str::slug('Multimedia')
+            'slug' => Str::slug('Multimedia'),
+            'foto' => 'foto.png'
         ]);
         Category::create([
             'name' => 'PC & Laptop',
-            'slug' => Str::slug('PC & Laptop')
+            'slug' => Str::slug('PC & Laptop'),
+            'foto' => 'foto.png'
         ]);
         Category::create([
             'name' => 'Audio',
-            'slug' => Str::slug('Audio')
+            'slug' => Str::slug('Audio'),
+            'foto' => 'foto.png'
         ]);
         Category::create([
             'name' => 'TV',
-            'slug' => Str::slug('TV')
+            'slug' => Str::slug('TV'),
+            'foto' => 'foto.png'
         ]);
         Category::create([
             'name' => 'Lain-lain',
-            'slug' => Str::slug('Lain-lain')
+            'slug' => Str::slug('Lain-lain'),
+            'foto' => 'foto.png'
         ]);
     }
 }

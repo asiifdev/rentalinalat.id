@@ -21,7 +21,7 @@
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Categories</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ url('/admin/category') }}">Show All Categories</a></li>
-                                <li><a href="layout-boxed.html">Sub Category</a></li>
+                                <li><a href="{{ url('/admin/subcategory') }}">Sub Category</a></li>
                                 <li><a href="layout-fix-header.html">View Product</a></li>
                                 <li><a href="layout-fix-sidebar.html">Trash</a></li>
                             </ul>

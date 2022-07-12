@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class CategoryController extends Controller
-{
+class SubCategoryController extends Controller
+{  
     public function index() {
-        $kategori = Category::where('parent_id', null)->get();
-        return view('admin.category.index',[
-            'kategori' => $kategori,
+        $kategori = Category::with('parent')->get();
+        $subkategori = Category::whereHas('children')->get();
+        // dd($subkategori);
+        $sub = Category::where('parent_id', '=', null)->get();
+        return view('admin.category.subcategory',[
+            'subkategori' => $subkategori,
+            'sub' => $sub
         ]);
     }
 
@@ -30,25 +33,24 @@ class CategoryController extends Controller
 
                 $category = new Category();
                 $category->name = $request->name;
-                $category->parent_id = null;
+                $category->parent_id = $request->id;
                 $category->slug = \Str::slug($request->name);
                 $category->foto = $namafile;
-                $nm->move(public_path().'/images/kategori', $namafile);
+                $nm->move(public_path().'/images/subkategori', $namafile);
                 $category->save();
             }
         else
         {
             $category = new Category();
             $category->name = $request->name;
-            $category->parent_id = null;
+            $category->parent_id = $request->id;
             $category->slug = \Str::slug($request->name);
             $category->foto = 'foto.png';
             $category->save();
         }
-
-        return redirect('admin/category')->with('success','Data added successfully');
+        return redirect('admin/subcategory')->with('success','Data added successfully');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -60,6 +62,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
         
-        return redirect('admin/category')->with('success', 'Data Deleted Successfully');
+        return redirect('admin/subcategory')->with('success', 'Data Deleted Successfully');
     }
 }

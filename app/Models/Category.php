@@ -16,13 +16,11 @@ class Category extends Model
         $this-> hasMany(Product::class, ['id', 'name']);
     }
 
-    public function parent()
-    {
-        $this->hasMany(Category::class, 'parent_id');
+    public function parent(){
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
-    public function child()
-    {
-        $this->belongsTo(Category::class, 'parent_id');
+    public function children() {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

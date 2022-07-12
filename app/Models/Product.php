@@ -10,6 +10,15 @@ class Product extends Model
     use HasFactory;
     protected $table = 'products';
     protected $guarded = [];
+    // protected $status = [
+    //     'Active',
+    //     'Unactive'
+    // ];
+
+    public static $status = [
+		'active' => 'Active',
+		'unactive' => 'Unactive',
+    ];
 
     public function category()
     {

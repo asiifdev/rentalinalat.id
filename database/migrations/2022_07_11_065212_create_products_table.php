@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description');
+            $table->string('foto');
             $table->string('dayRate');
             $table->string('rating')->nullable();
             $table->unsignedBigInteger('category_id');
