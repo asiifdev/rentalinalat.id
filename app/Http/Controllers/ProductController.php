@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -68,5 +69,22 @@ class ProductController extends Controller
         $product->delete();
         
         return redirect('admin/product')->with('success', 'Data Deleted Successfully');
+    }
+
+    // public function ajax($cat_id)
+    // {
+    //     $cat_id = Category::get('category_id');
+    //     $subcategories =  Category::where('parent_id','=',$cat_id)->lists('name');
+    //     return response()->json($subcategories);
+    // }
+
+    public function subCat(Request $request)
+    {
+         
+        $parent_id = $request->cat_id;
+         
+        $subcategories = Category::where('parent_id',$parent_id)->get();
+        // dd($subcategories);
+        return response()->json($subcategories);
     }
 }

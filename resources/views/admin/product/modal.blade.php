@@ -1,6 +1,26 @@
 
 <!-- Modal -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () { 
+            $('#categoryy').on('change',function(e){
+            console.log(e);
+            var cat_id = e.target.value;
+            console.log(cat_id);
+            //ajax
+            $.get('/ajax-subcat?cat_id='+ cat_id,function(data){
+                //success data
+           // console.log(data);
+                var subcat =  $('#subcategoryy').empty();
+                $.each(data,function(create,subcatObj){
+                    var option = $('<option/>', {id:create, value:subcatObj});
+                    subcat.append('<option value ="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+                });
+            });
+        });
+    });
+</script>
 <div class="modal fade" id="addModalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content" style="background-color: #0B0C21;">
@@ -48,25 +68,26 @@
                                             </select>
                                         </div> --}}
                                         <div class="form-group">
-                                            {!! Form::label('category','Category:') !!}
+                                            {!! Form::label('category','Kategori Induk :') !!}
                                             <select name="categoryy" id="categoryy" class="form-control input-rounded">
-                                                @foreach($s as $k)
-                                                    <option value="{{ $k['id'] }}">{{ $k['name'] }}</option>
-                                                @endforeach
-                                                {{--<option value="Dance And Music">Dance And Music</option>--}}
+                                                @if(request()->is('admin/product'))
+                                                    @foreach($s as $k)
+                                                        <option value="{{ $k['id'] }}">{{ $k['name'] }}</option>
+                                                    @endforeach  
+                                                @endif
                                             </select>
                                         </div>
                                         
                                         <div class="form-group">
-                                            {!! Form::label('subcategory','Subcategory:') !!}
-                                            <select name="subcategoryy" id="subcategoryy" class="form-control input-rounded">
-                                                <option value=""></option>
+                                            {!! Form::label('subcategory','Kategori:') !!}
+                                            <select name="subcategoryy" id="subcategoryy" class="form-control input-rounded ">
+                                                <option value="" disabled selected> <span style="color: #453;">-- Pilih Kategori Induk Terlebih Dahulu --</span> </option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="status"><span class="ml-2">Status Produk</span></label>
                                             <select name="status" id="status" class="form-control">
-                                                <option value="" disabled selected>..</option>
+                                                <option value="" disabled selected> ---</option>
                                                 @if (request()->is('admin/product'))
                                                     @foreach($enum as $status)
                                                         <option value="{{ $status }}">{{ $status }}</option>
@@ -92,3 +113,4 @@
         </div>
     </div>
 </div>
+

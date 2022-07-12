@@ -35,10 +35,9 @@ Route::get('/admin/product/edit/[id]', [App\Http\Controllers\ProductController::
 Route::post('/admin/product/update/[id]', [App\Http\Controllers\ProductController::class.'update']);
 Route::resource('admin/product', ProductController::class);
 // Route::get('subcatories/{id}', [ProductController::class, 'loadSubCategories']);
-Route::get('/ajax-subcat',function () {
-    $cat_id = Category::get('category_id');
-    $subcategories =  DB::table('categories')->where('parent_id','=',$cat_id)->lists('name');
-    return Response::json($subcategories);});
+Route::get('/ajax-subcat',[ProductController::class, 'subCat']);
+Route::post('/subcat',[ProductController::class, 'subCat'])->name('subcat');
+
 // -------------------------------------------------------------------------------------------------------------------------------------------
 
 // ================================================================== ROUTES INVOPICES =======================================================
