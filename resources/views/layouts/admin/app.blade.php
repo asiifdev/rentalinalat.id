@@ -19,6 +19,28 @@
     <link href="{{ asset('admin/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+    <style>
+        .jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box {
+            -webkit-box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+            box-shadow: 0 2px 6pxrgba(0,0,0,0.2);
+            border-radius: 5px;
+            background-color: #010208;
+        }
+    </style>
+    @if (request()->is('admin/product'))
+        <style>
+            button, input, optgroup, select, textarea {
+                margin: 0;
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+                color: azure;
+            }
+            tbody tr td:last-child {
+                text-align: center;
+            }
+        </style>
+    @endif
 </head>
 
 <body class="header-fix fix-sidebar">

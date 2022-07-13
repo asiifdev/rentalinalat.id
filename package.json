@@ -10,7 +10,9 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.10.2",
         "axios": "^0.25",
+        "bootstrap": "^5.1.3",
         "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.2.1",
         "lodash": "^4.17.19",
@@ -20,6 +22,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "@popperjs/core": "^2.11.5"
+        "@popperjs/core": "^2.11.5",
+        "autoprefixer": "10.4.5"
     }
 }

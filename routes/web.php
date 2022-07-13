@@ -37,7 +37,7 @@ Route::resource('admin/product', ProductController::class);
 // Route::get('subcatories/{id}', [ProductController::class, 'loadSubCategories']);
 Route::get('/ajax-subcat',[ProductController::class, 'subCat']);
 Route::post('/subcat',[ProductController::class, 'subCat'])->name('subcat');
-
+Route::get('/admin/product/[id]',[ProductController::class, 'show'])->name('showproduct');
 // -------------------------------------------------------------------------------------------------------------------------------------------
 
 // ================================================================== ROUTES INVOPICES =======================================================
@@ -45,3 +45,6 @@ Route::get('/admin/invoices', function () {
     return view('admin.invoices.index');
 });
 // -------------------------------------------------------------------------------------------------------------------------------------------
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

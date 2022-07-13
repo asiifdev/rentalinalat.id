@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('kode');
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
+            $table->text('description');
             $table->string('foto');
             $table->string('dayRate');
             $table->string('rating')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('barcode')->nullable();
+            $table->text('barcode')->nullable();
             $table->enum('status', ['Unactive', 'Active']);
             $table->softDeletes();
             $table->timestamps();

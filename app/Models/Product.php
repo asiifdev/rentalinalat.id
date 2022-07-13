@@ -22,11 +22,11 @@ class Product extends Model
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+       return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function order()
     {
-        $this->belongsTo(Order::class);
+       return $this->belongsTo(Order::class);
     }
 }
