@@ -25,30 +25,30 @@
 </head>
 
 <body>
-    		<!-- preloader - start -->
-		<div class="preloader">
-			<div class="animation_preloader">
-				<div class="spinner"></div>
-				<p class="text-center">Loading</p>
-			</div>
-			<div class="loader">
-				<div class="row vh-100">
-					<div class="col-3 loader_section section-left">
-						<div class="bg"></div>
-					</div>
-					<div class="col-3 loader_section section-left">
-						<div class="bg"></div>
-					</div>
-					<div class="col-3 loader_section section-right">
-						<div class="bg"></div>
-					</div>
-					<div class="col-3 loader_section section-right">
-						<div class="bg"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- preloader - end -->
+        <!-- preloader - start -->
+    <div class="preloader">
+        <div class="animation_preloader">
+            <div class="spinner"></div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row vh-100">
+                <div class="col-3 loader_section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader_section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader_section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader_section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader - end -->
 
     <!-- Navbar - start
     ================================================== -->
@@ -118,8 +118,50 @@
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider_content text-start">
                                 <span class="text-sub">  Bingung sewa peralatan</span>
-                                <span data-animation="fadeInUp" class="text-judul">
-                                        Fotografi?
+                                <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
+                                    Fotografi?
+                                </span>
+                                <div class="abtn_wrap clearfix mt-3" data-animation="fadeInUp" data-delay=".7s">
+                                    <a class="btn btn-custom" href="#!">
+                                        Pesan Sekarang
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item has_overlay d-flex align-items-center"
+                data-bg-image="{{ asset('web/images/slider.png') }}">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row justify-content-left">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider_content text-start">
+                                <span class="text-sub">  Bingung sewa peralatan</span>
+                                <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
+                                    Fotografi?
+                                </span>
+                                <div class="abtn_wrap clearfix mt-3" data-animation="fadeInUp" data-delay=".7s">
+                                    <a class="btn btn-custom" href="#!">
+                                        Pesan Sekarang
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item has_overlay d-flex align-items-center"
+                data-bg-image="{{ asset('web/images/slider.png') }}">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row justify-content-left">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="slider_content text-start">
+                                <span class="text-sub">  Bingung sewa peralatan</span>
+                                <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
+                                    Fotografi?
                                 </span>
                                 <div class="abtn_wrap clearfix mt-3" data-animation="fadeInUp" data-delay=".7s">
                                     <a class="btn btn-custom" href="#!">
@@ -183,17 +225,103 @@
        <!-- alur_section - start
    ================================================== -->
     <section class="nullable"></section>
-    <section class="container ms-5">
-        <div class="row">
-            <div class="col">
-                <h3>Cuma 4 Langkah Sewa Alat Bersama <span style="color: #CC1522">Rentalinalat.id</span></h3>
+    <section class="">
+        <div class="container-fluid ms-5 mb-5">
+            <span class="keterangan-card ms-5">Cuma 4 Langkah Sewa Alat Bersama <span class="keterangan-card-merah">Rentalinalat.id</span></span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-3">
+                    <div class="card-flow card mt-3">
+                        <div class="card-title text-center mt-4">
+                            <i class="bi bi-arrow-right-circle judul-card"></i>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <span class="body-cardnya">Login/Sign Up</span>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-3">
+                    <div class="card-flow card mt-3">
+                        <div class="card-title text-center mt-4">
+                            <i class="bi bi-search judul-card"></i>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <span class="body-cardnya">Cari Alat</span>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-3">
+                    <div class="card-flow card mt-3">
+                        <div class="card-title text-center mt-4">
+                            <i class="bi bi-wallet2 judul-card"></i>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <span class="body-cardnya">Bayar</span>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-3">
+                    <div class="card-flow card mt-3">
+                        <div class="card-title text-center mt-4">
+                            <i class="bi bi-box2-fill judul-card"></i>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <span class="body-cardnya">Terima Alat</span>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <section class="nullable"></section>
 
        <!-- alur_section - end
    ================================================== -->
 
+       <!-- alur_section - start
+   ================================================== -->
+   <section class="">
+        <div class="container-fluid ms-5 mb-5">
+           <span class="keterangan-card ms-5">Penawaran <span class="keterangan-card-merah">Menarik</span> Untukmu </span>
+        </div>
+        <div class="container">
+            <div class="">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev ms-auto" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next me-auto" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+   </section>
+   <section class="nullable"></section>
+   
 
     {{-- Script --}}
 

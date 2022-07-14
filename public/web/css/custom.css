@@ -8,7 +8,7 @@
     background-color: #EA001E;
   }
   .nullable{
-    height: 200px;
+    height: 180px;
   }
 
   .btn-custom{
@@ -23,7 +23,7 @@
     color: #CC1522;
     font-weight: 600;
     line-height: 100px;
-    margin-top: 16px !important;
+    margin-top: 20px;
     font-size: 100px;
   }
   .text-sub{
@@ -40,6 +40,54 @@
     border-radius: 10px;
     color: #fa0707;
   }
+
+
+  .body-cardnya{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #CC1522
+  }
+  .deskripsi-card{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #0D0D0D;
+  }
+  .judul-card{
+    color: #CC1522;
+    font-size:50px;
+    width:54.17px;
+  }
+  .keterangan-card{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+  }
+  .keterangan-card-merah{
+    color: #CC1522;font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+  }
+  .card-flow{
+    border: none;
+  }
+  .card-flow:hover{
+    box-shadow: 5px 6px 6px 5px #ebbcbc;
+    transform: scale(1);
+    border-radius: 30px;
+  }
+
+
   img {
     height: auto;
     max-width: 100%;
