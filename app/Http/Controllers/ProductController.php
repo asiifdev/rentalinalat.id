@@ -34,6 +34,11 @@ class ProductController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        // $produk
+    }
+
     /**
      * Store a newly created resource in storage.
      *

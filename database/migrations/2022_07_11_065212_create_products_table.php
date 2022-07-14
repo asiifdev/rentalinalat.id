@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kode');
             $table->string('name');
             $table->string('slug');
+            // $table->text('kutipan');
             $table->text('description');
             $table->string('foto');
             $table->string('dayRate');

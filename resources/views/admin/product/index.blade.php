@@ -44,7 +44,7 @@
                                         <td>{{ $item->kode }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->category->name }}</td>
-                                        <td>{{ $item->dayRate }}</td>
+                                        <td>{{ moneyFormat($item->dayRate) }}</td>
                                         <td>
                                             @if (isset($item->foto))
                                                 <img src="{{ asset('images/produk/' . $item->foto) }}" alt="{{ $item->name }}" class="" style="height: 80px">
