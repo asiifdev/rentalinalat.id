@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
-    
+
     <!-- animation - css include -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/automotive/css/aos.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/automotive/css/animate.css') }}">
@@ -20,12 +20,13 @@
 
     <!-- custom - css include -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/css/datepicker.css') }}">
 
     <title>Hello, world!</title>
 </head>
 
 <body>
-        <!-- preloader - start -->
+    <!-- preloader - start -->
     <div class="preloader">
         <div class="animation_preloader">
             <div class="spinner"></div>
@@ -117,7 +118,7 @@
                     <div class="row justify-content-left">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider_content text-start">
-                                <span class="text-sub">  Bingung sewa peralatan</span>
+                                <span class="text-sub"> Bingung sewa peralatan</span>
                                 <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
                                     Fotografi?
                                 </span>
@@ -138,7 +139,7 @@
                     <div class="row justify-content-left">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider_content text-start">
-                                <span class="text-sub">  Bingung sewa peralatan</span>
+                                <span class="text-sub"> Bingung sewa peralatan</span>
                                 <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
                                     Fotografi?
                                 </span>
@@ -159,7 +160,7 @@
                     <div class="row justify-content-left">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="slider_content text-start">
-                                <span class="text-sub">  Bingung sewa peralatan</span>
+                                <span class="text-sub"> Bingung sewa peralatan</span>
                                 <span data-animation="fadeInUp" data-delay=".5s" class="text-judul">
                                     Fotografi?
                                 </span>
@@ -183,35 +184,40 @@
     <section class="search_section clearfix">
         <div class="container">
             <div class="advance_search_form2" data-bg-color="#FFFF" data-aos="fade-up" data-aos-delay="50">
-                <form action="#">
-                    <div class="row align-items-end">
+                <form action="/">
+                    @csrf
+                    <div class="row row-cols-2 g-1">
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <h4 class="input_title text-white">Kategori</h4>
                                 <div class="position-relative">
-                                    <input id="location_two" type="text" name="location"
-                                        placeholder="Masukkan Kategori Barang">
-                                    <label for="location_two" class="input_icon"><i
-                                            class="fas fa-map-marker-alt"></i></label>
+                                    <label for="kategori" class="input_icon"> <i class="filter bi bi-camera"></i></label>
+                                    <input id="kategori" type="text" name="kategori" placeholder="Kategori">
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <h4 class="input_title text-white">Dari Tanggal</h4>
-                                <input type="date" name="date">
+                                <div class="position-relative">
+                                    <input id="subkategori" type="text" name="subcat" placeholder="Sub Kategori">
+                                    <label for="subkategori" class="input_icon"><i class="filter bi bi-subtract"></i></label>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <h4 class="input_title text-white">Sampai Tanggal</h4>
-                                <input type="date" name="date">
+                                <label for="datepicker" class="input_icon"><i class="filter bi bi-calendar-date"></i></label>
+                                <input type="text" id="datepicker" autocomplete="off" placeholder="Dari Tanggal" name="fordate">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <button type="submit" class="btn btn-lg btn-danger mb-2">Cari</button>
+                                <label for="datepicker2" class="input_icon"><i class="filter bi bi-calendar3"></i></label>
+                                <input type="text" id="datepicker2" autocomplete="off" placeholder="Sampai Tanggal" name="todate">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form_item">
+                                <button type="submit" class="btn btn-lg btn-danger">Cari</button>
                             </div>
                         </div>
                     </div>
@@ -222,12 +228,13 @@
     <!-- search_section - end
    ================================================== -->
 
-       <!-- alur_section - start
+    <!-- alur_section - start
    ================================================== -->
     <section class="nullable"></section>
     <section class="">
-        <div class="container-fluid ms-5 mb-5">
-            <span class="keterangan-card ms-5">Cuma 4 Langkah Sewa Alat Bersama <span class="keterangan-card-merah">Rentalinalat.id</span></span>
+        <div class="ms-5 mb-5">
+            <span class="keterangan-card">Cuma 4 Langkah Sewa Alat Bersama <span
+                    class="keterangan-card-merah">Rentalinalat.id</span></span>
         </div>
         <div class="container">
             <div class="row">
@@ -238,7 +245,8 @@
                         </div>
                         <div class="card-body text-center mt-3">
                             <span class="body-cardnya">Login/Sign Up</span>
-                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem
+                                ipsum lorem ipsum</p>
                         </div>
                     </div>
                 </div>
@@ -249,7 +257,8 @@
                         </div>
                         <div class="card-body text-center mt-3">
                             <span class="body-cardnya">Cari Alat</span>
-                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem
+                                ipsum lorem ipsum</p>
                         </div>
                     </div>
                 </div>
@@ -260,7 +269,8 @@
                         </div>
                         <div class="card-body text-center mt-3">
                             <span class="body-cardnya">Bayar</span>
-                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem
+                                ipsum lorem ipsum</p>
                         </div>
                     </div>
                 </div>
@@ -271,7 +281,8 @@
                         </div>
                         <div class="card-body text-center mt-3">
                             <span class="body-cardnya">Terima Alat</span>
-                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                            <p class="deskripsi-card mt-2">lorem ipsum lorem ipsum lorem lorem ipsum lorem ipsum lorem
+                                ipsum lorem ipsum</p>
                         </div>
                     </div>
                 </div>
@@ -280,57 +291,163 @@
     </section>
     <section class="nullable"></section>
 
-       <!-- alur_section - end
+    <!-- alur_section - end
    ================================================== -->
 
-       <!-- alur_section - start
+    <!-- carousel_section - start
    ================================================== -->
-   <section class="">
-        <div class="container-fluid ms-5 mb-5">
-           <span class="keterangan-card ms-5">Penawaran <span class="keterangan-card-merah">Menarik</span> Untukmu </span>
+    <section class="" style="background: #F9F9F9;">
+        <section style="height: 130px;"></section>
+        <div class="ms-5 mb-5">
+            <span class="keterangan-card">Penawaran <span class="keterangan-card-merah">Menarik</span> Untukmu </span>
         </div>
         <div class="container">
             <div class="">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
-                      </div>
+                        <div class="carousel-item active">
+                            <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('web/images/slider2.png') }}" class="d-block w-100" alt="">
+                        </div>
                     </div>
-                    <button class="carousel-control-prev ms-auto" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next me-auto" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
                     </button>
+                </div>
+                <section style="height: 72px;"></section>
+            </div>
+        </div>
+    </section>
+    <section class="nullable"></section>
+    <!-- carousel_section - end
+   ================================================== -->
+
+    <!-- koleksi_section - start
+   ================================================== -->
+    <section class="container-fluid">
+        <div class="ms-5 mb-5">
+            <span class="keterangan-card">Koleksi Kami </span>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                    <div class="card-flow card mt-3">
+                        <div class="card-body text-center mt-3">
+                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                            <div class="card-flow card mt-3">
+                                <div class="card-body text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                            <div class="card-flow card mt-3">
+                                <div class="card-body text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                            <div class="card-flow card mt-3">
+                                <div class="card-body text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                            <div class="card-flow card mt-3">
+                                <div class="card-body text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                            <div class="card-flow mt-3">
+                                <div class="card-body text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-   </section>
-   <section class="nullable"></section>
-   
+    </section>
+    <section class="nullable"></section>
+
+    <!-- koleksi_section - end
+   ================================================== -->
+
+    <!-- carousel_section - start
+    ================================================== -->
+    <section class="" style="background: #F9F9F9;">
+        <section style="height: 130px;"></section>
+        <div class="container">
+            <div class="">
+                <div class="row p-3">
+                    <div class="col-lg-4 col-md-5 col-sm-12">
+                        <span class="card-keunggulan">Kenapa Harus di <span style="color: #CC1522;">Rentalinalat.id?</span></span>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-12 p-2">
+                        <span class="keunggulan">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-sm">
+                <div class="row text-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;">10</span>
+                        <span style="color: #000000;font-size: 40px;position: absolute;">+</span>
+                        <p class="deskripsi-keunggulan">Jenis alat tersedia</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;">100</span>
+                        <span style="color: #000000;font-size: 40px;position: absolute;">+</span>
+                        <p class="deskripsi-keunggulan">Total Semua Alat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section style="height: 130px;"></section>
+    </section>
+    <section class="nullable"></section>
+
+    <!-- alur_section - end
+    ================================================== -->
+
 
     {{-- Script --}}
 
-    <!-- Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js') }}"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js') }}"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
     <!-- fraimwork - jquery include -->
@@ -375,6 +492,7 @@
 
     <!-- custom - jquery include -->
     <script src="{{ asset('web/automotive/js/custom.js') }}"></script>
+    <script src="{{ asset('web/js/custom.js') }}"></script>
 </body>
 
 </html>
