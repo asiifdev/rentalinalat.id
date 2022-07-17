@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/datepicker.css') }}">
 
-    <title>Hello, world!</title>
+    <title>Rentalin Alat</title>
 </head>
 
 <body>
@@ -53,29 +53,28 @@
 
     <!-- Navbar - start
     ================================================== -->
-    <nav class="navbar fixed navbar-expand-lg mt-2 navbar-light bg-white">
+    <nav class="navbar sticky-top navbar-expand-lg mt-1 navbar-light bg-white">
         <div class="container-fluid">
             <a class="navbar-brand ms-4" href="#">
                 <img src="{{ asset('web/images/logo.png') }}" alt="" width="216" height="45">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link active" href="#">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
-                <div class="d-flex justify-content-center">
-                    <ul class="navbar-nav">
+                <div class="">
+                    <ul class="navbar-nav me-auto d-flex" style="flex-direction: row;">
                         <li class="nav-item ms-3">
                             <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;">
                                 <i class="bi bi-search"></i>
@@ -86,6 +85,10 @@
                                 <i class="bi bi-cart3"></i>
                             </a>
                         </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="navbar-nav ml-auto" style="flex-direction: row;">
                         <li class="nav-item ms-3 mt-2">
                             <a href="" style="color: #0D0D0D;text-decoration: none;">
                                 Login
@@ -215,7 +218,7 @@
                                 <input type="text" id="datepicker2" autocomplete="off" placeholder="Sampai Tanggal" name="todate">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-2">
                             <div class="form_item">
                                 <button type="submit" class="btn btn-lg btn-danger">Cari</button>
                             </div>
@@ -231,7 +234,7 @@
     <!-- alur_section - start
    ================================================== -->
     <section class="nullable"></section>
-    <section class="">
+    <section class="container-fluid">
         <div class="ms-5 mb-5">
             <span class="keterangan-card">Cuma 4 Langkah Sewa Alat Bersama <span
                     class="keterangan-card-merah">Rentalinalat.id</span></span>
@@ -296,7 +299,7 @@
 
     <!-- carousel_section - start
    ================================================== -->
-    <section class="" style="background: #F9F9F9;">
+    <section class="container-fluid" style="background: #F9F9F9;">
         <section style="height: 130px;"></section>
         <div class="ms-5 mb-5">
             <span class="keterangan-card">Penawaran <span class="keterangan-card-merah">Menarik</span> Untukmu </span>
@@ -326,12 +329,12 @@
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        {{-- <span class="visually-hidden">Previous</span> --}}
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        {{-- <span class="visually-hidden">Next</span> --}}
                     </button>
                 </div>
                 <section style="height: 72px;"></section>
@@ -348,50 +351,54 @@
         <div class="ms-5 mb-5">
             <span class="keterangan-card">Koleksi Kami </span>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid m-0">
             <div class="row justify-content-center">
-                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
-                    <div class="card-flow card mt-3">
-                        <div class="card-body text-center mt-3">
-                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="">
+                <div class="col-sm-12 col-xs-5 col-md-7 col-lg-4">
+                    <div class="card-flow mt-3">
+                        <div class="text-center mt-3">
+                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="img-fluid" style="width: 437px;height: 544px;">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                <div class="col-sm-12 col-xs-10 col-md-10 col-lg-7">
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
-                            <div class="card-flow card mt-3">
-                                <div class="card-body text-center mt-3">
+                        <div class="col-sm-4 col-xs-3 col-md-4 col-lg-4">
+                            <div class="card-flow mt-3">
+                                <div class="text-center mt-3">
                                     <img src="{{ asset('web/images/kamera.png') }}" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
-                            <div class="card-flow card mt-3">
-                                <div class="card-body text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                        <div class="col-sm-8 col-xs-9 col-md-8 col-lg-8">
+                            <div class="m-auto">
+                                <div class="text-center m-5">
+                                    <span style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 28px;akan Pengalline-height: 42px;color: #000000;">
+                                        Rasakan 
+                                        <span style="color: #CC1522;">Pengalaman Baru</span> 
+                                        dengan Rentalinalat.id
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
-                            <div class="card-flow card mt-3">
-                                <div class="card-body text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
-                            <div class="card-flow card mt-3">
-                                <div class="card-body text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
                             <div class="card-flow mt-3">
-                                <div class="card-body text-center mt-3">
+                                <div class="text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
+                            <div class="card-flow mt-3">
+                                <div class="text-center mt-3">
+                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
+                            <div class="card-flow mt-3">
+                                <div class="text-center mt-3">
                                     <img src="{{ asset('web/images/kamera.png') }}" alt="">
                                 </div>
                             </div>
@@ -412,12 +419,12 @@
         <section style="height: 130px;"></section>
         <div class="container">
             <div class="">
-                <div class="row p-3">
-                    <div class="col-lg-4 col-md-5 col-sm-12">
+                <div class="row mb-5">
+                    <div class="col-lg-4 col-md-5 col-sm-12 text-start me-auto">
                         <span class="card-keunggulan">Kenapa Harus di <span style="color: #CC1522;">Rentalinalat.id?</span></span>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-sm-12 p-2">
-                        <span class="keunggulan">s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</span>
+                    <div class="col-lg-6 col-md-7 col-sm-12 text-left p-3 ms-auto">
+                        <span class="keunggulan">simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</span>
                     </div>
                 </div>
             </div>
@@ -446,9 +453,7 @@
 
     {{-- Script --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <!-- fraimwork - jquery include -->
     <script src="{{ asset('web/automotive/js/jquery-3.5.1.min.js') }}"></script>

@@ -186,12 +186,12 @@
     line-height: 24px;
   }
   .active {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 400;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     color: #CC1522;
     font-family: "Poppins", sans-serif;
-    line-height: 24px;
+    /* line-height: 24px; */
   }
   
   :-moz-placeholder {
@@ -1261,11 +1261,11 @@
     }
   
     .carousel-control-prev {
-      left: -110px;
+      left: -50px;
     }
     
     .carousel-control-next {
-      right: -110px;
+      right: -50px;
     }
     
     /* global - end */
@@ -1337,11 +1337,11 @@
       font-size: 16px;
     }
     .carousel-control-prev {
-      left: -60px;
+      left: -33px;
     }
     
     .carousel-control-next {
-      right: -60px;
+      right: -33px;
     }
     
   
@@ -1424,11 +1424,12 @@
   @media screen and (max-width: 991px) {
     /* global - start */
     .carousel-control-prev {
-      left: 0;
+      visibility: hidden;
     }
     
     .carousel-control-next {
-      right: 0;
+      visibility: hidden;
+
     }
     .order-last {
       order: 0;
