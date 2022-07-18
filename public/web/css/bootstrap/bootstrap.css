@@ -4023,6 +4023,20 @@ textarea.form-control-lg {
   max-height: var(--bs-scroll-height, 75vh);
   overflow-y: auto;
 }
+@media (max-width:575px) {
+  .navbar-collapse {
+    margin: 50%;
+    margin-left: 10%;
+    margin-right: 5%;
+    height: 100vh;
+  }
+  .nav-link{
+    font-size: 200%;
+    flex-direction: row;
+    display: inline;
+    font-display: inherit;
+  }
+}
 
 @media (min-width: 576px) {
   .navbar-expand-sm {

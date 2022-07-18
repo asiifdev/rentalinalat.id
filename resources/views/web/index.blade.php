@@ -21,6 +21,15 @@
     <!-- custom - css include -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/datepicker.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('web/css/mdb/css/mdb.min.css') }}"> --}}
+    <style>
+        /* .navbar-collapse {
+            height: 100vh;
+        } */
+        .navbar-toggle.collapsed .icon:before {
+            content: '\f00d';
+        }
+    </style>
 
     <title>Rentalin Alat</title>
 </head>
@@ -54,55 +63,48 @@
     <!-- Navbar - start
     ================================================== -->
     <nav class="navbar sticky-top navbar-expand-lg mt-1 navbar-light bg-white">
-        <div class="container-fluid">
-            <a class="navbar-brand ms-4" href="#">
+        <div class="container-fluid justify-content-between">
+            <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
                 <img src="{{ asset('web/images/logo.png') }}" alt="" width="216" height="45">
             </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-auto ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Product</a>
+                        <a class="nav-link" href="#">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
-                <div class="">
-                    <ul class="navbar-nav me-auto d-flex" style="flex-direction: row;">
-                        <li class="nav-item ms-3">
-                            <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;">
-                                <i class="bi bi-search"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item ms-3 me-5">
-                            <a href="" style="color: #CC1522;font-size: 26px;">
-                                <i class="bi bi-cart3"></i>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="align-items-center ms-2 me-3 mb-1" style="position: relative;">
+                    <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1">
+                        <i class="bi bi-search"></i>
+                    </a>
+                    <a href="" style="color: #CC1522;font-size: 26px;" class="m-1">
+                        <i class="bi bi-cart3"></i>
+                    </a>
                 </div>
-                <div>
-                    <ul class="navbar-nav ml-auto" style="flex-direction: row;">
-                        <li class="nav-item ms-3 mt-2">
-                            <a href="" style="color: #0D0D0D;text-decoration: none;">
-                                Login
-                            </a>
-                        </li>
-                        <li class="nav-item ms-3 me-5">
-                            <a href="" style="color: #CC1522;text-decoration: none;">
-                                <button type="button" class="btn btn-danger position-relative"
-                                    style="border-radius: 10px;box-shadow: 4px 32px 13px rgba(204, 21, 34, 0.01), 2px 18px 11px rgba(204, 21, 34, 0.05), 1px 8px 8px rgba(204, 21, 34, 0.09), 0px 2px 4px rgba(204, 21, 34, 0.1), 0px 0px 0px rgba(204, 21, 34, 0.1);">
-                                    <span style="font-weight: bold;">Sign Up</span>
-                                </button>
-                            </a>
-                        </li>
-                    </ul>
+            </div>
+            <div class="d-flex align-items-center me-4 collapse" id="navbarSupportedContent">
+                <div class="btn-group flex-collumn" role="group" aria-label="Basic example">
+                    <a href="" style="color: #0D0D0D;text-decoration: none;">
+                        <button style="border: none; background-color: transparent;" class="me-2 mt-2">
+                            Login
+                        </button>
+                    </a>
+                    <a href="" style=";text-decoration: none;" class="">
+                        <button type="button" class="btn" style="background-color: #CC1522;border-radius: 10px;box-shadow: 4px 32px 13px rgba(204, 21, 34, 0.01), 2px 18px 11px rgba(204, 21, 34, 0.05), 1px 8px 8px rgba(204, 21, 34, 0.09), 0px 2px 4px rgba(204, 21, 34, 0.1), 0px 0px 0px rgba(204, 21, 34, 0.1);">
+                            <span style="font-weight: bold;" class="text-white">Sign Up</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -193,7 +195,8 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
                                 <div class="position-relative">
-                                    <label for="kategori" class="input_icon"> <i class="filter bi bi-camera"></i></label>
+                                    <label for="kategori" class="input_icon"> <i
+                                            class="filter bi bi-camera"></i></label>
                                     <input id="kategori" type="text" name="kategori" placeholder="Kategori">
                                 </div>
                             </div>
@@ -201,21 +204,27 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
                                 <div class="position-relative">
-                                    <input id="subkategori" type="text" name="subcat" placeholder="Sub Kategori">
-                                    <label for="subkategori" class="input_icon"><i class="filter bi bi-subtract"></i></label>
+                                    <input id="subkategori" type="text" name="subcat"
+                                        placeholder="Sub Kategori">
+                                    <label for="subkategori" class="input_icon"><i
+                                            class="filter bi bi-subtract"></i></label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <label for="datepicker" class="input_icon"><i class="filter bi bi-calendar-date"></i></label>
-                                <input type="text" id="datepicker" autocomplete="off" placeholder="Dari Tanggal" name="fordate">
+                                <label for="datepicker" class="input_icon"><i
+                                        class="filter bi bi-calendar-date"></i></label>
+                                <input type="text" id="datepicker" autocomplete="off" placeholder="Dari Tanggal"
+                                    name="fordate">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <div class="form_item">
-                                <label for="datepicker2" class="input_icon"><i class="filter bi bi-calendar3"></i></label>
-                                <input type="text" id="datepicker2" autocomplete="off" placeholder="Sampai Tanggal" name="todate">
+                                <label for="datepicker2" class="input_icon"><i
+                                        class="filter bi bi-calendar3"></i></label>
+                                <input type="text" id="datepicker2" autocomplete="off"
+                                    placeholder="Sampai Tanggal" name="todate">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-2">
@@ -356,7 +365,8 @@
                 <div class="col-sm-12 col-xs-5 col-md-7 col-lg-4">
                     <div class="card-flow mt-3">
                         <div class="text-center mt-3">
-                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="img-fluid" style="width: 437px;height: 544px;">
+                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="img-fluid"
+                                style="width: 437px;height: 544px;">
                         </div>
                     </div>
                 </div>
@@ -372,9 +382,10 @@
                         <div class="col-sm-8 col-xs-9 col-md-8 col-lg-8">
                             <div class="m-auto">
                                 <div class="text-center m-5">
-                                    <span style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 28px;akan Pengalline-height: 42px;color: #000000;">
-                                        Rasakan 
-                                        <span style="color: #CC1522;">Pengalaman Baru</span> 
+                                    <span
+                                        style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 28px;akan Pengalline-height: 42px;color: #000000;">
+                                        Rasakan
+                                        <span style="color: #CC1522;">Pengalaman Baru</span>
                                         dengan Rentalinalat.id
                                     </span>
                                 </div>
@@ -421,22 +432,25 @@
             <div class="">
                 <div class="row mb-5">
                     <div class="col-lg-4 col-md-5 col-sm-12 text-start me-auto">
-                        <span class="card-keunggulan">Kenapa Harus di <span style="color: #CC1522;">Rentalinalat.id?</span></span>
+                        <span class="card-keunggulan">Kenapa Harus di <span
+                                style="color: #CC1522;">Rentalinalat.id?</span></span>
                     </div>
                     <div class="col-lg-6 col-md-7 col-sm-12 text-left p-3 ms-auto">
-                        <span class="keunggulan">simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</span>
+                        <span class="keunggulan">simply dummy text of the printing and typesetting industry. Lorem
+                            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley</span>
                     </div>
                 </div>
             </div>
             <div class="container-sm">
                 <div class="row text-center">
                     <div class="col-lg-6 col-md-6 col-sm-12">
-                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;">10</span>
+                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;" class="counter1">10</span>
                         <span style="color: #000000;font-size: 40px;position: absolute;">+</span>
                         <p class="deskripsi-keunggulan">Jenis alat tersedia</p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
-                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;">100</span>
+                        <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;" class="counter2">100</span>
                         <span style="color: #000000;font-size: 40px;position: absolute;">+</span>
                         <p class="deskripsi-keunggulan">Total Semua Alat</p>
                     </div>
@@ -447,13 +461,170 @@
     </section>
     <section class="nullable"></section>
 
-    <!-- alur_section - end
+    <!-- carousel_section - end
     ================================================== -->
 
+    <!-- keunggulan_section - start
+    ================================================== -->
+
+    <section class="container">
+        <div class="row justify-content-center allign-items-center text-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card" style="border: none;">
+                    <div class="card-title">
+                        <span
+                        style="font-family: 'Manrope';font-style: normal;font-weight: 800;font-size: 30px;line-height: 41px;color: #CC1522;"><i class="bi bi-shield-check me-4"></i>Lorem Ipsum </span>
+                    </div>
+                    <div class="card-body">
+                        <span>
+                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card" style="border: none;">
+                    <div class="card-title">
+                        <span
+                        style="font-family: 'Manrope';font-style: normal;font-weight: 800;font-size: 30px;line-height: 41px;color: #CC1522;"><i class="bi bi-upc-scan me-4"></i>Lorem Ipsum </span>
+                    </div>
+                    <div class="card-body">
+                        <span>
+                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center allign-items-center text-center mt-5">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card" style="border: none;">
+                    <div class="card-title">
+                        <span
+                        style="font-family: 'Manrope';font-style: normal;font-weight: 800;font-size: 30px;line-height: 41px;color: #CC1522;"><i class="bi bi-plug me-4"></i>Lorem Ipsum </span>
+                    </div>
+                    <div class="card-body">
+                        <span>
+                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card" style="border: none;">
+                    <div class="card-title">
+                        <span
+                        style="font-family: 'Manrope';font-style: normal;font-weight: 800;font-size: 30px;line-height: 41px;color: #CC1522;"><i class="bi bi-wrench-adjustable me-4"></i>Lorem Ipsum </span>
+                    </div>
+                    <div class="card-body">
+                        <span>
+                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="nullable"></section>
+    </section>
+
+    <!-- keunggulan_section - end
+    ================================================== -->
+
+    
+    <!-- review_section - start
+    ================================================== -->
+    <div class="container-fluid" style="background: #CC1522;">
+        <section class="nullable"></section>
+        <div class="container">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <div class="row p-3 allign-items-center justify-content-center text-center">
+                            <div class="col-lg-2 mt-4 mb-3">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 40px;line-height: 60px;color: #FFFFFF;">Client Stories.</span>
+                            </div>
+                            <div class="col-lg-2 ms-2">
+                                <img src="{{asset('web/images/man.png')}}" class="rounded-circle" alt="Gambar tidak ditemukan">
+                            </div>
+                            <div class="col-lg-7 mt-4">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 15px;line-height: 22px;color: #FFFFFF;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</span>
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <span style="color: #FFFFFF;">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <div class="row p-3 allign-items-center justify-content-center text-center">
+                            <div class="col-lg-2 mt-4 mb-3">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 40px;line-height: 60px;color: #FFFFFF;">Review Kedua.</span>
+                            </div>
+                            <div class="col-lg-2 ms-2">
+                                <img src="{{asset('web/images/man.png')}}" class="rounded-circle" alt="Gambar tidak ditemukan">
+                            </div>
+                            <div class="col-lg-7 mt-4">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 15px;line-height: 22px;color: #FFFFFF;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</span>
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <span style="color: #FFFFFF;">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <div class="row p-3 allign-items-center justify-content-center text-center">
+                            <div class="col-lg-2 mt-4 mb-3">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 40px;line-height: 60px;color: #FFFFFF;">Review Ketiga.</span>
+                            </div>
+                            <div class="col-lg-2 ms-2">
+                                <img src="{{asset('web/images/man.png')}}" class="rounded-circle" alt="Gambar tidak ditemukan">
+                            </div>
+                            <div class="col-lg-7 mt-4">
+                                <span style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 15px;line-height: 22px;color: #FFFFFF;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</span>
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <span style="color: #FFFFFF;">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="nullable"></section>
+    </div>
+    <section class="nullable"></section>
+
+    <!-- review_section - end
+    ================================================== -->
 
     {{-- Script --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 
     <!-- fraimwork - jquery include -->
     <script src="{{ asset('web/automotive/js/jquery-3.5.1.min.js') }}"></script>
@@ -498,6 +669,26 @@
     <!-- custom - jquery include -->
     <script src="{{ asset('web/automotive/js/custom.js') }}"></script>
     <script src="{{ asset('web/js/custom.js') }}"></script>
+    <script>
+        jQuery({ Counter: 1 }).animate({
+            Counter: jQuery('.counter1').text()
+            }, {
+            duration: 7000,
+            easing: 'swing',
+            step: function() {
+                jQuery('.counter1').text(Math.ceil(this.Counter).toLocaleString('de'));
+            }  
+        });
+        jQuery({ Counter: 1 }).animate({
+            Counter: jQuery('.counter2').text()
+            }, {
+            duration: 6000,
+            easing: 'swing',
+            step: function() {
+                jQuery('.counter2').text(Math.ceil(this.Counter).toLocaleString('de'));
+            }  
+        });
+    </script>
 </body>
 
 </html>
