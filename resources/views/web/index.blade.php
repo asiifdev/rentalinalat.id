@@ -22,14 +22,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/datepicker.css') }}">
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('web/css/mdb/css/mdb.min.css') }}"> --}}
-    <style>
-        /* .navbar-collapse {
-            height: 100vh;
-        } */
-        .navbar-toggle.collapsed .icon:before {
-            content: '\f00d';
-        }
-    </style>
 
     <title>Rentalin Alat</title>
 </head>
@@ -442,7 +434,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-sm">
+            <div class="container-sm" id="counter">
                 <div class="row text-center">
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <span style="font-weight: 800;font-size: 80px;line-height: 109px;color: #1D1D1D;" class="counter1">10</span>
@@ -620,6 +612,48 @@
     <!-- review_section - end
     ================================================== -->
 
+    {{-- FOOTER --}}
+    <footer>
+        <div class="container">
+            <div class="row text-left">
+                <div class="col-lg-4">
+                    <img src="{{ asset('web/images/logo.png') }}" alt="" width="257" height="44">
+                    <p>Jl Melati No. 5A, Surakarta</p>
+                    <p>rentalinalat@gmail.com</p>
+                    <p>0882-1538-0301</p>
+                </div>
+                <div class="col-lg-2 mt-3">
+                    <h3>Menu</h3>
+                    <p>Home</p>
+                    <p>Product</p>
+                    <p>Contact Us</p>
+                </div>
+                <div class="col-lg-2 mt-3">
+                    <h3>Kategori</h3>
+                    <p>Multimedia</p>
+                    <p>PC & Laptop</p>
+                    <p>TV</p>
+                    <p>Audio</p>
+                    <p>Lainnya</p>
+                </div>
+                <div class="col-lg-4 mt-3">
+                    <h3>Newslatter</h3>
+                    <p>Bergabunglah dengan email kami untuk menerima berita dan pembaruan terbaru dari tim kami.</p>
+                </div>
+            </div>
+            <hr style="border: 2px solid #dddddde1;">
+            <div class="justify-content-between mb-5">
+                <div class="d-inline align-items-center ms-auto">
+                    2022 © Look Creative. all right reserved
+                </div>
+                <div class="d-inline align-items-center me-5">
+                    Logo
+                </div>
+            </div>
+        </div>
+    </footer>
+    {{-- END FOOTER --}}
+
     {{-- Script --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -671,9 +705,9 @@
     <script src="{{ asset('web/js/custom.js') }}"></script>
     <script>
         jQuery({ Counter: 1 }).animate({
-            Counter: jQuery('.counter1').text()
+        Counter: jQuery('.counter1').text()
             }, {
-            duration: 7000,
+            duration: 5000,
             easing: 'swing',
             step: function() {
                 jQuery('.counter1').text(Math.ceil(this.Counter).toLocaleString('de'));
@@ -682,7 +716,7 @@
         jQuery({ Counter: 1 }).animate({
             Counter: jQuery('.counter2').text()
             }, {
-            duration: 6000,
+            duration: 5000,
             easing: 'swing',
             step: function() {
                 jQuery('.counter2').text(Math.ceil(this.Counter).toLocaleString('de'));
