@@ -5,7 +5,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@500&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Ubuntu:wght@700&family=Roboto:wght@500&display=swap');
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4026,15 +4026,24 @@ textarea.form-control-lg {
 @media (max-width:575px) {
   .navbar-collapse {
     margin: 50%;
-    margin-left: 10%;
-    margin-right: 5%;
+    margin-left: 20%;
+    margin-right: 3%;
     height: 100vh;
   }
   .nav-link{
+    font-family: 'Ubuntu', sans-serif;
     font-size: 200%;
     flex-direction: row;
     display: inline;
     font-display: inherit;
+  }
+  li .active{
+    font-family: 'Ubuntu', sans-serif !important;
+  }
+  .logo-header{
+    height: 50%;
+    width: 50%;
+    margin: auto;
   }
 }
 

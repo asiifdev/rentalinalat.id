@@ -58,3 +58,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Route::get('/',[App\Http\Controllers\WebController::class, 'index'])->name('home');
+Route::get('/product',[App\Http\Controllers\Web\ProductController::class, 'index'])->name('produk');
