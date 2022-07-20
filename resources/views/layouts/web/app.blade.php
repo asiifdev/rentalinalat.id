@@ -21,7 +21,9 @@
     <!-- custom - css include -->
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/datepicker.css') }}">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('web/css/mdb/css/mdb.min.css') }}"> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/css/product.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <title>Rentalin Alat</title>
 </head>
@@ -58,58 +60,60 @@
 
     <section class="nullable"></section>
     {{-- FOOTER --}}
-    <footer>
-        <div class="container">
-            <div class="row text-left">
-                <div class="col-lg-4 col-sm-12">
-                    <img src="{{ asset('web/images/logo.png') }}" alt="" width="257" height="44">
-                    <p class="title=description mt-3">Jl Melati No. 5A, Surakarta</p>
-                    <a href="mailto:rentalinalat@gmail.com" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">rentalinalat@gmail.com</p></a>
-                    <a href="https://wa.me/6288215380301" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">0882-1538-0301</p></a>
-                </div>
-                <div class="col-lg-2 col-md-6 mt-3">
-                    <span class="footer-title">Menu</span>
-                    <a href="{{ route('home') }}" style="text-decoration: none;color: #0D0D0D;"><p class="title=description mt-3">Home</p></a>
-                    <a href="{{ route('produk') }}" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Product</p></a>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Contact Us</p></a>
-                </div>
-                <div class="col-lg-2 col-md-6 mt-3">
-                    <span class="footer-title">Kategori</span>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description mt-3">Multimedia</p></a>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">PC & Laptop</p></a>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">TV</p></a>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Audio</p></a>
-                    <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Lainnya</p></a>
-                </div>
-                <div class="col-lg-4 mt-3">
-                    <span class="footer-title">Newslatter</span>
-                    <p class="title=description mt-3">Bergabunglah dengan email kami untuk menerima berita dan pembaruan terbaru dari tim kami.</p>
-                    <form action="POST">
-                        <div class="form_item">
-                            <div class="position-relative">
-                                <label for="email" class="input_icon"><i class="filter bi bi-envelope-fill"></i></label>
-                                <input id="email" type="email" name="email" placeholder="Masukkan Email Anda">
+    <footer style="bottom: 0">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="container">
+                <div class="row text-left">
+                    <div class="col-lg-4 col-sm-12">
+                        <img src="{{ asset('web/images/logo.png') }}" alt="" width="257" height="44">
+                        <p class="title=description mt-3">Jl Melati No. 5A, Surakarta</p>
+                        <a href="mailto:rentalinalat@gmail.com" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">rentalinalat@gmail.com</p></a>
+                        <a href="https://wa.me/6288215380301" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">0882-1538-0301</p></a>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mt-3">
+                        <span class="footer-title">Menu</span>
+                        <a href="{{ route('home') }}" style="text-decoration: none;color: #0D0D0D;"><p class="title=description mt-3">Home</p></a>
+                        <a href="{{ route('produk') }}" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Product</p></a>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Contact Us</p></a>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mt-3">
+                        <span class="footer-title">Kategori</span>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description mt-3">Multimedia</p></a>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">PC & Laptop</p></a>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">TV</p></a>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Audio</p></a>
+                        <a href="" style="text-decoration: none;color: #0D0D0D;"><p class="title=description">Lainnya</p></a>
+                    </div>
+                    <div class="col-lg-4 mt-3">
+                        <span class="footer-title">Newslatter</span>
+                        <p class="title=description mt-3">Bergabunglah dengan email kami untuk menerima berita dan pembaruan terbaru dari tim kami.</p>
+                        <form action="POST">
+                            <div class="form_item">
+                                <div class="position-relative">
+                                    <label for="email" class="input_icon"><i class="filter bi bi-envelope-fill"></i></label>
+                                    <input id="email" type="email" name="email" placeholder="Masukkan Email Anda">
+                                </div>
+                                <button class="btn btn-custom mt-3" type="submit">
+                                    Subscribe
+                                </button>
                             </div>
-                            <button class="btn btn-custom mt-3" type="submit">
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+                <hr style="border: 2px solid #dddddde1;">
+                <div class="row mb-4">
+                    <div class="col-lg-6 mb-lg-1 mb-3 text-lg-start text-md-center text-center">
+                        2022 © <a href="https://lookcreative.id/" style="text-decoration: none;color: #CC1522;">Look Creative.</a> all right reserved
+                    </div>
+                    <div class="col-lg-6 text-lg-end text-md-center text-center">
+                        <a href="" style="text-decoration: none;"><i class="bi bi-instagram m-3" style="color: #CC1522;font-size: 20px;"></i></a>
+                        <a href="" style="text-decoration: none;"><i class="bi bi-twitter m-3" style="color: #CC1522;font-size: 20px;"></i></a>
+                        <a href="" style="text-decoration: none;"><i class="bi bi-whatsapp m-3" style="color: #CC1522;font-size: 20px;"></i></a>
+                        <a href="" style="text-decoration: none;"><i class="bi bi-facebook m-3" style="color: #CC1522;font-size: 20px;"></i></a>
+                    </div>
                 </div>
             </div>
-            <hr style="border: 2px solid #dddddde1;">
-            <div class="row mb-4">
-                <div class="col-lg-6 mb-lg-1 mb-3 text-lg-start text-md-center text-center">
-                    2022 © <a href="https://lookcreative.id/" style="text-decoration: none;color: #CC1522;">Look Creative.</a> all right reserved
-                </div>
-                <div class="col-lg-6 text-lg-end text-md-center text-center">
-                    <a href="" style="text-decoration: none;"><i class="bi bi-instagram m-3" style="color: #CC1522;font-size: 20px;"></i></a>
-                    <a href="" style="text-decoration: none;"><i class="bi bi-twitter m-3" style="color: #CC1522;font-size: 20px;"></i></a>
-                    <a href="" style="text-decoration: none;"><i class="bi bi-whatsapp m-3" style="color: #CC1522;font-size: 20px;"></i></a>
-                    <a href="" style="text-decoration: none;"><i class="bi bi-facebook m-3" style="color: #CC1522;font-size: 20px;"></i></a>
-                </div>
-            </div>
-        </div>
+        </section>
     </footer>
     {{-- END FOOTER --}}
 

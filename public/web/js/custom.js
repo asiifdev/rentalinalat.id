@@ -3,9 +3,11 @@
 var dateToday = new Date();
 $( function() {
 	$( "#datepicker, #datepicker2" ).datepicker({
+    language: "id",
 		dateFormat: "dd-mm-yy",
 		duration: "fast",
-    minDate: dateToday,
+    // minDate: dateToday,
+    showStatus: true,
 	});
 });
 
@@ -16,4 +18,19 @@ $( function() {
   tooltipTriggerList.forEach(function (tooltipTriggerEl) {
     new bootstrap.Tooltip(tooltipTriggerEl)
   })
-})()
+})();
+
+function tampilkan(){
+  $()
+  // $('.datepickerr').removeClass( "hidden","invisible","none" );
+  $('.datepickerr').datepicker({
+    language: "id",
+    dateFormat: "dd-mm-yy",
+    duration: "fast",
+    todayHighlight: true,
+    toggleActive: true,
+    prevText: "Earlier",
+    showStatus: true,
+  });
+  // $('.datepickerr').css('display', 'none');
+}
