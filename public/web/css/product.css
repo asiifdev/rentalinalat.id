@@ -34,27 +34,43 @@ a:hover{
     display: block;
 }
 
-.card-product-grid:hover .btn-overlay {
-    opacity: 1;
+.card-product-grid:hover {
+    background-color: #F1F1F1;
+    border: 1px solid #CC1522 !important;
+    border-radius: 20px;
 }
-.card-product-grid .btn-overlay {
-    -webkit-transition: .5s;
-    transition: .5s;
-    opacity: 0;
-    left: 0;
-    bottom: 0;
-    color: #fff;
-    width: 100%;
-    padding: 5px 0;
-    text-align: center;
-    position: absolute;
-    background: rgba(255, 0, 0, 0.5);
+.card-product-grid{
+    border: 2px solid #F1F1F1 !important;
+    border-radius: 20px !important;
 }
 .img-wrap {
     overflow: hidden;
     position: relative;
 }
-.datepicker .datepicker-switch, .datepicker .next, .datepicker .prev, .datepicker tfoot tr th {
-    cursor: pointer;
-    background: cyan;
+.price{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+
+    color: #CC1522;
+}
+.textDay{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height */
+    color: #0D0D0D;
+}
+.textProduct{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    /* identical to box height */
+    color: #0D0D0D;
+    justify-content: left;
 }

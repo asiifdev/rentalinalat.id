@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/bootstrap/bootstrap.css') }}">
@@ -58,7 +60,9 @@
 
     @yield('content')
 
-    <section class="nullable"></section>
+    <section style="height: 50px;"></section>
+    <hr style="height: 3px; width: 100%;background: #CC1522;margin-top:30px;">
+
     {{-- FOOTER --}}
     <footer style="bottom: 0">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

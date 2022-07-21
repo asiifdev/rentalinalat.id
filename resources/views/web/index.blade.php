@@ -502,6 +502,7 @@
         </div>
         <section class="nullable"></section>
     </div>
+    <section style="height: 100px;"></section>
     <!-- review_section - end
     ================================================== -->
     @endsection

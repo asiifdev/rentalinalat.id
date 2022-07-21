@@ -17,86 +17,219 @@
         background-position: 50%;
         top: 35px;
     }
+    .btn-nav-accordion[aria-expanded="true"] .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+    .btn-nav-accordion[aria-expanded="true"] .title {
+        color: #CC1522;
+        font-weight: 800;
+    }
+    .kategori[aria-expanded="true"] .fa-chevron-right {
+        transform: rotate(-90deg);
+    }
+    .kategori[aria-expanded="true"] .title {
+        color: #CC1522;
+        font-weight: 800;
+    }
+    .card-header {
+        padding: 0.5rem 1rem;
+        margin-bottom: 0;
+        background-color: transparent;
+        border: none;
+        /* border-bottom: 1px solid #CC1522 !important; */
+    }
+    .collapse_1{
+        border: 1px solid #CC1522 !important;
+    }
+    .tanggal{
+        /* border: 1px solid #CC1522 !important; */
+        margin-bottom: 20px;
+    }
+    .card{
+        border: none;
+    }
+    .filter-content{
+        margin-top: 0px;
+    }
 </style>
-    <div class="container mt-5">
-        <div class="row">
-            <aside class="col-md-3">
-
-                <div class="card">
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true"
-                                class="" onclick="tampilkan();">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Dari Tanggal</h6>
-                            </a>
-                        </header>
-                        <div class="datepickerr" id="collapse_2"></div>
-                    </article> <!-- filter-group  .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
+    <div class="container-fluid p-lg-5 p-0 mt-5 mt-md-0 mt-lg-0">
+        <div class="row p-lg-5 p-4">
+            <aside class="col-md-4 col-lg-3 mt-lg-5 mt-md-5">
+                <div class="card mt-lg-5 mt-md-5">
+                    <div class="tanggal d-inline-block">
+                        <article class="filter-group">
+                            <header class="card-header" id="collapse_tanggal">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false"
+                                    class="btn-nav-accordion">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title"><i class="bi bi-calendar-date me-2 filter"></i> Dari Tanggal</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse" id="collapse_2">
+                                <div class="card-body m-auto">
+                                    <div class="productFromDate">
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </article> <!-- filter-group  .// -->
+    
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false"
+                                    class="btn-nav-accordion" onclick="">
+                                    <i class="icon-control fa fa-chevron-down" style="rotate"></i>
+                                    <h6 class="title"><i class="bi bi-calendar-date-fill me-2 filter"></i> Sampai Tanggal</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse" id="collapse_3">
+                                <div class="card-body">
+                                    <div class="productToDate">
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </article> <!-- filter-group  .// -->
+                        <div class="m-auto p-2 text-center">
+                            <button class="btn btn-custom" style="width: 100%;">
+                                FILTER
+                            </button>
+                        </div>
+                    </div>
+                    <article class="filter-group collapse_1">
+                        <header class="card-header text-center m-auto">
                             <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true"
-                                class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Product type</h6>
+                                class="btn-nav-accordion">
+                                {{-- <i class="icon-control fa fa-chevron-down mb-2"></i> --}}
+                                <h6 class="title mt-2"><b>Kategori</b></h6>
                             </a>
                         </header>
                         <div class="filter-content collapse show" id="collapse_1" style="">
                             <div class="card-body">
-                                <ul class="list-menu">
-                                    <li><a href="#">People </a></li>
-                                    <li><a href="#">Watches </a></li>
-                                    <li><a href="#">Cinema </a></li>
-                                    <li><a href="#">Clothes </a></li>
-                                    <li><a href="#">Home items </a></li>
-                                    <li><a href="#">Animals</a></li>
-                                    <li><a href="#">People </a></li>
+                                <ul class="list-menu ms-3">
+                                    <li>
+                                        <article class="filter-group">
+                                            <header class="">
+                                                <a href="#" data-toggle="collapse" data-target="#mutimedia" aria-expanded="false"
+                                                    class="kategori">
+                                                    <i class="icon-control fa fa-chevron-right"></i>
+                                                    <h6 class="title">Multimedia</h6>
+                                                </a>
+                                            </header>
+                                            <div class="filter-content collapse mt-0" id="mutimedia" style="">
+                                                <div class="card-body">
+                                                    <ul class="list-menu">
+                                                        <li><a href="#">Multimedia</a></li>
+                                                        <li><a href="#">PC & Laptop </a></li>
+                                                        <li><a href="#">TV </a></li>
+                                                        <li><a href="#">Audio </a></li>
+                                                        <li><a href="#">Lainnya </a></li>
+                                                    </ul>
+                                                </div> <!-- card-body.// -->
+                                            </div>
+                                        </article> <!-- filter-group  .// -->
+                                    </li>
+                                    <li>
+                                        <article class="filter-group">
+                                            <header class="">
+                                                <a href="#" data-toggle="collapse" data-target="#laptop" aria-expanded="false"
+                                                    class="kategori">
+                                                    <i class="icon-control fa fa-chevron-right"></i>
+                                                    <h6 class="title">PC & Laptop</h6>
+                                                </a>
+                                            </header>
+                                            <div class="filter-content collapse mt-0" id="laptop" style="">
+                                                <div class="card-body">
+                                                    <ul class="list-menu">
+                                                        <li><a href="#">Multimedia</a></li>
+                                                        <li><a href="#">PC & Laptop </a></li>
+                                                        <li><a href="#">TV </a></li>
+                                                        <li><a href="#">Audio </a></li>
+                                                        <li><a href="#">Lainnya </a></li>
+                                                    </ul>
+                                                </div> <!-- card-body.// -->
+                                            </div>
+                                        </article> <!-- filter-group  .// -->
+                                    </li>
+                                    <li>
+                                        <article class="filter-group">
+                                            <header class="">
+                                                <a href="#" data-toggle="collapse" data-target="#tv" aria-expanded="false"
+                                                    class="kategori">
+                                                    <i class="icon-control fa fa-chevron-right"></i>
+                                                    <h6 class="title">TV</h6>
+                                                </a>
+                                            </header>
+                                            <div class="filter-content collapse mt-0" id="tv" style="">
+                                                <div class="card-body">
+                                                    <ul class="list-menu">
+                                                        <li><a href="#">Multimedia</a></li>
+                                                        <li><a href="#">PC & Laptop </a></li>
+                                                        <li><a href="#">TV </a></li>
+                                                        <li><a href="#">Audio </a></li>
+                                                        <li><a href="#">Lainnya </a></li>
+                                                    </ul>
+                                                </div> <!-- card-body.// -->
+                                            </div>
+                                        </article> <!-- filter-group  .// -->
+                                    </li>
+                                    <li>
+                                        <article class="filter-group">
+                                            <header class="">
+                                                <a href="#" data-toggle="collapse" data-target="#audio" aria-expanded="false"
+                                                    class="kategori">
+                                                    <i class="icon-control fa fa-chevron-right"></i>
+                                                    <h6 class="title">Audio</h6>
+                                                </a>
+                                            </header>
+                                            <div class="filter-content collapse mt-0" id="audio" style="">
+                                                <div class="card-body">
+                                                    <ul class="list-menu">
+                                                        <li><a href="#">Multimedia</a></li>
+                                                        <li><a href="#">PC & Laptop </a></li>
+                                                        <li><a href="#">TV </a></li>
+                                                        <li><a href="#">Audio </a></li>
+                                                        <li><a href="#">Lainnya </a></li>
+                                                    </ul>
+                                                </div> <!-- card-body.// -->
+                                            </div>
+                                        </article> <!-- filter-group  .// -->
+                                    </li>
+                                    <li>
+                                        <article class="filter-group">
+                                            <header class="">
+                                                <a href="#" data-toggle="collapse" data-target="#lainnya" aria-expanded="false"
+                                                    class="kategori">
+                                                    <i class="icon-control fa fa-chevron-right"></i>
+                                                    <h6 class="title">Lainnya</h6>
+                                                </a>
+                                            </header>
+                                            <div class="filter-content collapse mt-0" id="lainnya" style="">
+                                                <div class="card-body">
+                                                    <ul class="list-menu">
+                                                        <li><a href="#">Multimedia</a></li>
+                                                        <li><a href="#">PC & Laptop </a></li>
+                                                        <li><a href="#">TV </a></li>
+                                                        <li><a href="#">Audio </a></li>
+                                                        <li><a href="#">Lainnya </a></li>
+                                                    </ul>
+                                                </div> <!-- card-body.// -->
+                                            </div>
+                                        </article> <!-- filter-group  .// -->
+                                    </li>
                                 </ul>
                             </div> <!-- card-body.// -->
                         </div>
                     </article> <!-- filter-group  .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false"
-                                class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">More filter </h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse in" id="collapse_5" style="">
-                            <div class="card-body">
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" checked=""
-                                        class="custom-control-input">
-                                    <div class="custom-control-label">Any condition</div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                    <div class="custom-control-label">Brand new </div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                    <div class="custom-control-label">Used items</div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                    <div class="custom-control-label">Very old</div>
-                                </label>
-                            </div><!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group .// -->
                 </div> <!-- card.// -->
 
             </aside>
-            <main class="col-md-9">
+            <main class="col-md-8 col-lg-9">
 
                 <header class="border-bottom mb-4 pb-3">
                     <div class="form-inline">
                         <div class="row mt-lg-0 mt-3">
-                            <div class="col-lg-9">
+                            <div class="col-lg-8 col-md-5 col-sm-3 col-xs-4 mt-md-2 mt-2">
                                 <div class="btn-group">
                                     <a href="#" class="btn btn-outline-danger" data-toggle="tooltip" title=""
                                         data-original-title="List view">
@@ -106,7 +239,7 @@
                                         <i class="fa fa-th"></i></a>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4 col-md-4 col-sm-9 col-xs-4">
                                 <form class="pb-3">
                                     <div class="input-group rounded">
                                         <span class="input-group-text border-0 mt-2" id="search-addon">
@@ -120,23 +253,21 @@
                     </div>
                 </header><!-- sect-heading -->
 
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-md-4">
                         <figure class="card card-product-grid">
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk1.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Great item name goes here</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
-                                        <del class="price-old">$1980</del>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -146,16 +277,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk2.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -165,16 +295,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk3.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -184,16 +313,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk4.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -203,16 +331,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk5.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -222,16 +349,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk6.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -241,16 +367,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk7.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -260,16 +385,15 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('web/images/produk/produk8.png') }}"
                                     class="img-fluid">
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
-                                    <a href="#" class="title">Product name goes here just for demo item</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$1280</span>
+                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
                                     </div> <!-- price-wrap.// -->
                                 </div>
-                                <a href="#" class="btn btn-block btn-danger">Add to cart </a>
                             </figcaption>
                         </figure>
                     </div> <!-- col.// -->
@@ -277,4 +401,5 @@
             </main>
         </div>
     </div>
+    <section style="height: 130px;"></section>
 @endsection
