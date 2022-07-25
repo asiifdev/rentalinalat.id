@@ -10,6 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data Produk</h4>
+                    <h4 class="card-title text-center">Kategori <b>{{ strtoupper($judul[0]->name) }}</b></h4>
                     {{-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> --}}
                     <div class="table-responsive m-t-40">
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered"
@@ -18,7 +19,7 @@
                                 <tr>
                                     <th>Kode Produk</th>
                                     <th>Nama Produk</th>
-                                    <th>Kategori</th>
+                                    {{-- <th>Kategori</th> --}}
                                     <th>Day Rate</th>
                                     <th>Foto Produk</th>
                                     <th>Barcode</th>
@@ -30,7 +31,7 @@
                                 <tr>
                                     <th>Kode Produk</th>
                                     <th>Nama Produk</th>
-                                    <th>Kategori</th>
+                                    {{-- <th>Kategori</th> --}}
                                     <th>Day Rate</th>
                                     <th>Foto Produk</th>
                                     <th>Barcode</th>
@@ -43,7 +44,7 @@
                                     <tr>
                                         <td>{{ $item->kode }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->category->name }}</td>
+                                        {{-- <td>{{ $item->category->name }}</td> --}}
                                         <td>{{ moneyFormat($item->dayRate) }}</td>
                                         <td>
                                             @if (isset($item->foto))

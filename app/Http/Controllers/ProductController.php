@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Milon\Barcode\Facades\DNS2DFacade;
+use Stringable;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -36,7 +38,51 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        // $produk
+        $produk = Product::where('id', $id)->with('category')->get();
+        // $item = json_decode($produk);
+        $s = Category::where('parent_id', null)->get();
+        $kategoriutama = Category::where('id' ,$produk[0]->category_id )->with('children')->get();
+        $enum = Product::$status;
+        // dd($kategoriutama);
+        return view('admin.product.edit',[
+            'produk' => $produk,
+            's' => $s,
+            'kategori' => $kategoriutama,
+            'enum' => $enum
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        $data = Product::findOrFail($id);
+        // dd($data);
+        $image = $request->file('foto');
+        if (isset($image))
+        {
+            $new_name = $image->getClientOriginalExtension();
+            $image->move(public_path().'/images/produk', $new_name);
+            $data->update(array(
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'kode' => $request->kode,
+                'description' => $request->description,
+                'dayrate' => $request->dayrate,
+                'category_id' => $request->category_id,
+                'status' => $request->status,
+                'foto' => $new_name,
+            ));
+        }
+        $form_data = array(
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'kode' => $request->kode,
+            'description' => $request->description,
+            'dayrate' => $request->dayrate,
+            'category_id' => $request->category_id,
+            'status' => $request->status,
+        );
+        $data->update($form_data);
+        
+        return redirect('admin/product')->with('success','Product updated successfully');
     }
 
     /**
@@ -81,7 +127,6 @@ class ProductController extends Controller
             $product->dayRate = $request->dayrate;
             $product->status = $request->status;
             $product->barcode = $barcode;
-            $product->slug = \Str::slug($request->name);
             $product->foto = 'foto.png';
             $product->save();
         }

@@ -9,7 +9,6 @@
         <div class="card">
             <div class="card-title">
                 <h4>Sub Kategori </h4>
-
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -31,7 +30,7 @@
                                 {{-- @if (isset($item->parent_id)) --}}
                                     <tr>
                                         <th scope="row" class="text-center">{{$no++}}</th>
-                                        <td class="text-primary">{{ $item->name }}</td>
+                                        <td class="text-primary"><a href="{{ url('/admin/subcategory/' . $item->id) }}">{{ $item->name }}</a></td>
                                         <td>{{ $item->children->name }}</td>
                                         <td>
                                         @if (isset($item->foto))
@@ -41,9 +40,9 @@
                                         @endif
                                         </td>
                                         <td class="text-left">
-                                            <a href="" class="btn btn-sm btn-success"><i class="fa fa-eye" aria-hidden="true"></i></i></a>
-                                            <a href="" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                            <form method="POST" action="{{ route('subcategory.destroy', [$item->id])}}" class="d-inline" onsubmit="return confirm('Yakin Hapus Kategori {{ $item->name }} ?')">
+                                            <a href="{{ url('/admin/subcategory/' . $item->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye" aria-hidden="true"></i></i></a>
+                                            <a href="{{ url('/admin/subcategory/' . $item->id . '/edit') }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            <form method="POST" action="{{ route('subcat.destroy', [$item->id])}}" class="d-inline" onsubmit="return confirm('Yakin Hapus Kategori {{ $item->name }} ?')">
                                                 @csrf
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

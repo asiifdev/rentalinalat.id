@@ -47,7 +47,7 @@
 </script>
 @endif
 <div class="modal fade" id="addModalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="top: 550px">
         <div class="modal-content mt-3" style="background-color: #0B0C21;">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>

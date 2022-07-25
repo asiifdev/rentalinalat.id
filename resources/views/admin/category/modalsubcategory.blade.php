@@ -12,7 +12,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form action="{{ route('subcategory.add') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('subcat.add') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                         <div class="form-group">
                                             <label for="name"><span class="ml-2">Nama Kategori</span></label>

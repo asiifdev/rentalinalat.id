@@ -22,29 +22,32 @@ Route::group(['middleware' => ['role:admin']], function () {
     // ================================================================== ROUTES KATEGORI ========================================================
     Route::get('/admin/category', [App\Http\Controllers\CategoryController::class,'index']);
     Route::post('/admin/category/create', [App\Http\Controllers\CategoryController::class,'store'])->name('category.add');
-    Route::get('/admin/category/edit/[id]', [App\Http\Controllers\CategoryController::class.'edit']);
-    Route::post('/admin/category/update/[id]', [App\Http\Controllers\CategoryController::class.'update']);
-    Route::resource('admin/category', CategoryController::class);
+    Route::get('/admin/category/edit/{id}', [App\Http\Controllers\CategoryController::class,'edit'])->name('category.edit');
+    Route::post('/admin/category/update/{id}', [App\Http\Controllers\CategoryController::class,'update'])->name('category.update');
+    Route::get('/admin/category/{id}', [App\Http\Controllers\FilterController::class,'category'])->name('category.sub');
+    Route::delete('/admin/category/{id}/delete', [App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
     // -------------------------------------------------------------------------------------------------------------------------------------------
     
     // ================================================================== ROUTES SUBKATEGORI =====================================================
     Route::get('/admin/subcategory', [App\Http\Controllers\SubCategoryController::class,'index']);
-    Route::post('/admin/subcategory/create', [App\Http\Controllers\SubCategoryController::class,'store'])->name('subcategory.add');
-    Route::resource('admin/subcategory', SubCategoryController::class);
-    
+    Route::post('/admin/subcategory/create', [App\Http\Controllers\SubCategoryController::class,'store'])->name('subcat.add');
+    // Route::resource('admin/subcategory', SubCategoryController::class);
+    Route::delete('/admin/subcategory/{id}/delete', [App\Http\Controllers\SubCategoryController::class,'destroy'])->name('subcat.destroy');
+    Route::get('/admin/subcategory/{id}', [App\Http\Controllers\FilterController::class,'produk'])->name('subcat.product');
     
     // -------------------------------------------------------------------------------------------------------------------------------------------
     
     // ================================================================== ROUTES PRODUK ==========================================================
+    
+    // Route::resource('admin/product', ProductController::class,['index']);
     Route::get('/admin/product', [App\Http\Controllers\ProductController::class,'index'])->name('admin.product');
     Route::post('/admin/product/create', [App\Http\Controllers\ProductController::class,'store'])->name('product.add');
-    Route::get('/admin/product/edit/[id]', [App\Http\Controllers\ProductController::class.'edit']);
-    Route::post('/admin/product/update/[id]', [App\Http\Controllers\ProductController::class.'update']);
-    Route::resource('admin/product', ProductController::class);
-    // Route::get('subcatories/{id}', [ProductController::class, 'loadSubCategories']);
+    Route::get('/admin/product/{id}/edit', [App\Http\Controllers\ProductController::class,'edit'])->name('product.edit');
+    Route::post('/admin/product/{id}/update', [App\Http\Controllers\ProductController::class,'update'])->name('product.update');
+    Route::delete('/admin/product/{id}/delete', [App\Http\Controllers\ProductController::class,'destroy'])->name('product.destroy');
     Route::get('/ajax-subcat',[ProductController::class, 'subCat']);
     Route::post('/subcat',[ProductController::class, 'subCat'])->name('subcat');
-    Route::get('/admin/product/[id]',[ProductController::class, 'show'])->name('showproduct');
+    Route::get('/admin/product/{id}',[ProductController::class, 'show'])->name('showproduct');
     // -------------------------------------------------------------------------------------------------------------------------------------------
     
     // ================================================================== ROUTES INVOICES =======================================================
