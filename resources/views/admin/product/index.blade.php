@@ -1,6 +1,14 @@
 @extends('layouts.admin.app')
 
 @section('content')
+<style>
+    .dataTables_filter input {
+        color: darkgray;
+    }
+    tbody tr td:last-child {
+        text-align: center;
+    }
+</style>
 <div>
     <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#addModalProduct" title="Tambah Produk"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</button>
 </div>
@@ -21,7 +29,7 @@
                                     <th>Kategori</th>
                                     <th>Day Rate</th>
                                     <th>Foto Produk</th>
-                                    <th>Barcode</th>
+                                    <th>Stock</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -33,7 +41,7 @@
                                     <th>Kategori</th>
                                     <th>Day Rate</th>
                                     <th>Foto Produk</th>
-                                    <th>Barcode</th>
+                                    <th>Stock</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -52,7 +60,7 @@
                                                 --}}
                                             @endif    
                                         </td>
-                                        <td>{!! $item->barcode !!}</td>
+                                        <td>{!! $item->stock !!}</td>
                                         <td>
                                             @if ($item->status == 'Active')
                                                 <span class="badge badge-primary">{{ $item->status }}</span>
@@ -63,7 +71,7 @@
                                         <td class="text-left">
                                             <a href="{{ url('/admin/product/' . $item->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="{{ url('/admin/product/' . $item->id . '/edit') }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                            <form method="POST" action="{{route('product.destroy', [$item->id])}}" class="d-inline" onsubmit="return confirm('Yakin Hapus Produk {{ $item->name }} ?')">
+                                            <form method="POST" action="{{route('product.destroy', [$item->id])}}" class="d-inline" onsubmit="return confirm('Yakin Hapus Produk {{ $item->name }} ? Produk yang dihapus akan masuk ke Product Trash')">
                                                 @csrf
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

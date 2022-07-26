@@ -1,5 +1,6 @@
 @extends('layouts.web.app')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
     .ui-datepicker-header a.ui-datepicker-next {
         right: 0;
@@ -107,116 +108,30 @@
                         <div class="filter-content collapse show" id="collapse_1" style="">
                             <div class="card-body">
                                 <ul class="list-menu ms-3">
-                                    <li>
-                                        <article class="filter-group">
-                                            <header class="">
-                                                <a href="#" data-toggle="collapse" data-target="#mutimedia" aria-expanded="false"
-                                                    class="kategori">
-                                                    <i class="icon-control fa fa-chevron-right"></i>
-                                                    <h6 class="title">Multimedia</h6>
-                                                </a>
-                                            </header>
-                                            <div class="filter-content collapse mt-0" id="mutimedia" style="">
-                                                <div class="card-body">
-                                                    <ul class="list-menu">
-                                                        <li><a href="#">Multimedia</a></li>
-                                                        <li><a href="#">PC & Laptop </a></li>
-                                                        <li><a href="#">TV </a></li>
-                                                        <li><a href="#">Audio </a></li>
-                                                        <li><a href="#">Lainnya </a></li>
-                                                    </ul>
-                                                </div> <!-- card-body.// -->
-                                            </div>
-                                        </article> <!-- filter-group  .// -->
-                                    </li>
-                                    <li>
-                                        <article class="filter-group">
-                                            <header class="">
-                                                <a href="#" data-toggle="collapse" data-target="#laptop" aria-expanded="false"
-                                                    class="kategori">
-                                                    <i class="icon-control fa fa-chevron-right"></i>
-                                                    <h6 class="title">PC & Laptop</h6>
-                                                </a>
-                                            </header>
-                                            <div class="filter-content collapse mt-0" id="laptop" style="">
-                                                <div class="card-body">
-                                                    <ul class="list-menu">
-                                                        <li><a href="#">Multimedia</a></li>
-                                                        <li><a href="#">PC & Laptop </a></li>
-                                                        <li><a href="#">TV </a></li>
-                                                        <li><a href="#">Audio </a></li>
-                                                        <li><a href="#">Lainnya </a></li>
-                                                    </ul>
-                                                </div> <!-- card-body.// -->
-                                            </div>
-                                        </article> <!-- filter-group  .// -->
-                                    </li>
-                                    <li>
-                                        <article class="filter-group">
-                                            <header class="">
-                                                <a href="#" data-toggle="collapse" data-target="#tv" aria-expanded="false"
-                                                    class="kategori">
-                                                    <i class="icon-control fa fa-chevron-right"></i>
-                                                    <h6 class="title">TV</h6>
-                                                </a>
-                                            </header>
-                                            <div class="filter-content collapse mt-0" id="tv" style="">
-                                                <div class="card-body">
-                                                    <ul class="list-menu">
-                                                        <li><a href="#">Multimedia</a></li>
-                                                        <li><a href="#">PC & Laptop </a></li>
-                                                        <li><a href="#">TV </a></li>
-                                                        <li><a href="#">Audio </a></li>
-                                                        <li><a href="#">Lainnya </a></li>
-                                                    </ul>
-                                                </div> <!-- card-body.// -->
-                                            </div>
-                                        </article> <!-- filter-group  .// -->
-                                    </li>
-                                    <li>
-                                        <article class="filter-group">
-                                            <header class="">
-                                                <a href="#" data-toggle="collapse" data-target="#audio" aria-expanded="false"
-                                                    class="kategori">
-                                                    <i class="icon-control fa fa-chevron-right"></i>
-                                                    <h6 class="title">Audio</h6>
-                                                </a>
-                                            </header>
-                                            <div class="filter-content collapse mt-0" id="audio" style="">
-                                                <div class="card-body">
-                                                    <ul class="list-menu">
-                                                        <li><a href="#">Multimedia</a></li>
-                                                        <li><a href="#">PC & Laptop </a></li>
-                                                        <li><a href="#">TV </a></li>
-                                                        <li><a href="#">Audio </a></li>
-                                                        <li><a href="#">Lainnya </a></li>
-                                                    </ul>
-                                                </div> <!-- card-body.// -->
-                                            </div>
-                                        </article> <!-- filter-group  .// -->
-                                    </li>
-                                    <li>
-                                        <article class="filter-group">
-                                            <header class="">
-                                                <a href="#" data-toggle="collapse" data-target="#lainnya" aria-expanded="false"
-                                                    class="kategori">
-                                                    <i class="icon-control fa fa-chevron-right"></i>
-                                                    <h6 class="title">Lainnya</h6>
-                                                </a>
-                                            </header>
-                                            <div class="filter-content collapse mt-0" id="lainnya" style="">
-                                                <div class="card-body">
-                                                    <ul class="list-menu">
-                                                        <li><a href="#">Multimedia</a></li>
-                                                        <li><a href="#">PC & Laptop </a></li>
-                                                        <li><a href="#">TV </a></li>
-                                                        <li><a href="#">Audio </a></li>
-                                                        <li><a href="#">Lainnya </a></li>
-                                                    </ul>
-                                                </div> <!-- card-body.// -->
-                                            </div>
-                                        </article> <!-- filter-group  .// -->
-                                    </li>
+                                    @foreach ($kategori as $item)
+                                        <li>
+                                            <article class="filter-group">
+                                                <header class="">
+                                                    <a href="#" data-toggle="collapse" data-target="#{{ Str::slug($item->name) }}" aria-expanded="false"
+                                                        class="kategori">
+                                                        <i class="icon-control fa fa-chevron-right"></i>
+                                                        <h6 class="title">{{ $item->name }}</h6>
+                                                    </a>
+                                                </header>
+                                                <div class="filter-content collapse mt-0" id="{{ Str::slug($item->name) }}" style="">
+                                                    <div class="card-body">
+                                                        <ul class="list-menu">
+                                                            <li><a href="#">Multimedia</a></li>
+                                                            <li><a href="#">PC & Laptop </a></li>
+                                                            <li><a href="#">TV </a></li>
+                                                            <li><a href="#">Audio </a></li>
+                                                            <li><a href="#">Lainnya </a></li>
+                                                        </ul>
+                                                    </div> <!-- card-body.// -->
+                                                </div>
+                                            </article> <!-- filter-group  .// -->
+                                        </li>                                        
+                                    @endforeach
                                 </ul>
                             </div> <!-- card-body.// -->
                         </div>
@@ -252,152 +167,27 @@
                         </div>
                     </div>
                 </header><!-- sect-heading -->
-
                 <div class="row text-center">
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk1.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk2.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk3.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk4.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk5.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk6.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk7.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img src="{{ asset('web/images/produk/produk8.png') }}"
-                                    class="img-fluid">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="#" class="title"><b>Kamera Sony a6100</b></a>
-                                    <div class="price-wrap mt-4">
-                                        <span class="textProduct">Harga Sewa</span><br>
-                                        <span class="price">Rp. 300.000<span class="textDay">/Day</span></span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-                </div> <!-- row end.// -->
+                        @foreach ($produk as $item)
+                        <div class="col-md-4">
+                            <figure class="card card-product-grid">
+                                <div class="img-wrap">
+                                    <img src="{{ asset('images/produk/' . $item->foto) }}"
+                                        class="img-fluid">
+                                </div> <!-- img-wrap.// -->
+                                <figcaption class="info-wrap">
+                                    <div class="fix-height">
+                                        <a href="#" class="title"><b>{{ $item->name }}</b></a>
+                                        <div class="price-wrap mt-4">
+                                            <span class="textProduct">Harga Sewa</span><br>
+                                            <span class="price">{{ moneyFormat($item->dayRate) }}<span class="textDay">/Day</span></span>
+                                        </div> <!-- price-wrap.// -->
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div> <!-- col.// -->
+                        @endforeach
+                    </div> <!-- row end.// -->
             </main>
         </div>
     </div>

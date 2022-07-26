@@ -55,6 +55,7 @@
             @include('layouts.admin.breadcrumbs')
             <!-- Container fluid  -->
             <div class="container-fluid">
+                @include('flash-message')
                 @yield('content')
             </div>
             <!-- End Container fluid  -->

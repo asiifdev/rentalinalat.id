@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->text('barcode')->nullable();
             $table->enum('status', ['Unactive', 'Active']);
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,6 +15,40 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function edit($id){
+        $subkategori = Category::where('id', $id)->get();
+        // dd($subkategori);
+        return view('admin.category.editcat', [
+            'subkategori' => $subkategori,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = Category::findOrFail($id);
+        // dd($data);
+        $image = $request->file('foto');
+        if (isset($image))
+        {
+            $new_name = $image->getClientOriginalExtension();
+            $image->move(public_path().'/images/kategori', $new_name);
+            $data->update(array(
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'parent_id' => null,
+                'foto' => $new_name,
+            ));
+        }
+        $form_data = array(
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'parent_id' => null,
+        );
+        $data->update($form_data);
+        
+        return redirect('admin/category')->with('success','Kategori Berhasil Diupdate');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +80,7 @@ class CategoryController extends Controller
             $category->save();
         }
 
-        return redirect('admin/category')->with('success','Data added successfully');
+        return redirect('admin/category')->with('success','Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -58,8 +92,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        $category->parent('id', $id)->delete();
         $category->delete();
         
-        return redirect('admin/category')->with('success', 'Data Deleted Successfully');
+        return redirect('admin/category')->with('success', 'Kategori Berhasil Dihapus');
     }
 }

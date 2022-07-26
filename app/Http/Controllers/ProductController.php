@@ -26,6 +26,30 @@ class ProductController extends Controller
         ]);
     }
 
+    public function trash()
+    {
+        $produk = Product::onlyTrashed()->get();
+        // dd($produk);
+        return view('admin.product.trash',[
+            'produk' => $produk
+        ]);
+    }
+
+    public function statusActive(){
+        $produk = Product::where('status', 'active')->get();
+        // dd($produk);
+        return view('admin.product.status.active',[
+            'produk' => $produk
+        ]);
+    }
+    public function statusUnactive(){
+        $produk = Product::where('status', 'unactive')->get();
+        // dd($produk);
+        return view('admin.product.status.unactive',[
+            'produk' => $produk
+        ]);
+    }
+
     public function show($id)
     {
         $show = Product::where('id', $id)->with('category')->get();
@@ -64,6 +88,7 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'kode' => $request->kode,
+                'stock' => $request->stock,
                 'description' => $request->description,
                 'dayrate' => $request->dayrate,
                 'category_id' => $request->category_id,
@@ -75,6 +100,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'kode' => $request->kode,
+            'stock' => $request->stock,
             'description' => $request->description,
             'dayrate' => $request->dayrate,
             'category_id' => $request->category_id,
@@ -82,7 +108,7 @@ class ProductController extends Controller
         );
         $data->update($form_data);
         
-        return redirect('admin/product')->with('success','Product updated successfully');
+        return redirect('admin/product')->with('success','Produk Berhasil Diupdate');
     }
 
     /**
@@ -102,6 +128,7 @@ class ProductController extends Controller
 
                 $product = new Product();
                 $product->kode = $request->kode;
+                $product->stock = $request->stock;
                 $product->name = $request->name;
                 $product->description = $request->description;
                 $product->category_id = $request->category_id;
@@ -120,6 +147,7 @@ class ProductController extends Controller
 
             $product = new Product();
             $product->kode = $request->kode;
+            $product->stock = $request->stock;
             $product->name = $request->name;
             $product->description = $request->description;
             $product->category_id = $request->category_id;
@@ -131,7 +159,7 @@ class ProductController extends Controller
             $product->save();
         }
 
-        return redirect('admin/product')->with('success','Data added successfully');
+        return redirect('admin/product')->with('success','Produk Berhasil Ditambahkan');
     }
 
     /**
@@ -143,9 +171,36 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        $form_data = array(
+            'status' => 'unactive',
+        );
+        $product->update($form_data);
         $product->delete();
         
-        return redirect('admin/product')->with('success', 'Data Deleted Successfully');
+        return redirect('admin/product/trash')->with('success', 'Produk Berhasil Dihapus dan Masuk ke Trash');
+    }
+
+    public function forceDelete($id)
+    {
+        $product = Product::onlyTrashed()->where('id', $id);
+        $product->forceDelete();
+        
+        return redirect('admin/product/trash')->with('success', 'Produk Berhasil Dihapus Permanen');
+    }
+
+
+    public function restore($id)
+    {
+        $produk = Product::onlyTrashed()->where('id', $id);
+        $form_data = array(
+            'status' => 'active',
+        );
+        $produk->update($form_data);
+        Product::onlyTrashed()
+            ->where('id', $id)
+            ->restore();
+        
+        return redirect('admin/product')->with('success', 'Produk Berhasil Dikembalikan');
     }
 
     public function subCat(Request $request)

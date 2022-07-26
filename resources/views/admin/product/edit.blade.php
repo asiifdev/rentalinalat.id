@@ -64,6 +64,11 @@
                                         class="form-control input-rounded" placeholder="Masukkan Kode Produk" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="stock"><span class="ml-2">Stock</span></label>
+                                    <input type="number" name="stock" value="{{ $item->stock }}"
+                                        class="form-control input-rounded" placeholder="Masukkan Stock Produk" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="name"><span class="ml-2">Nama Produk</span></label>
                                     <input type="text" name="name" value="{{ $item->name }}"
                                         class="form-control input-rounded" placeholder="Masukkan Nama Produk" required>

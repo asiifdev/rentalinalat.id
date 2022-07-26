@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubCategoryController extends Controller
 {  
@@ -16,6 +17,42 @@ class SubCategoryController extends Controller
             'subkategori' => $subkategori,
             'sub' => $sub
         ]);
+    }
+
+    public function edit($id){
+        $subkategori = Category::where('id', $id)->with('children')->get();
+        $sub = Category::where('parent_id', '=', null)->get();
+        // dd($subkategori);
+        return view('admin.category.editsubcat', [
+            'subkategori' => $subkategori,
+            'sub' => $sub
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = Category::findOrFail($id);
+        // dd($data);
+        $image = $request->file('foto');
+        if (isset($image))
+        {
+            $new_name = $image->getClientOriginalExtension();
+            $image->move(public_path().'/images/subkategori', $new_name);
+            $data->update(array(
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'parent_id' => $request->id,
+                'foto' => $new_name,
+            ));
+        }
+        $form_data = array(
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'parent_id' => $request->id,
+        );
+        $data->update($form_data);
+        
+        return redirect('admin/subcategory')->with('success','Sub Kategori Berhasil Diupdate');
     }
 
     /**
@@ -48,7 +85,7 @@ class SubCategoryController extends Controller
             $category->foto = 'foto.png';
             $category->save();
         }
-        return redirect('admin/subcategory')->with('success','Data added successfully');
+        return redirect('admin/subcategory')->with('success','Sub Kategori Berhasil Ditambahkan');
     }
     
     /**
@@ -59,9 +96,9 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id)->where('id', $id);
         $category->delete();
-        
-        return redirect('admin/subcategory')->with('success', 'Data Deleted Successfully');
+        // dd($category);
+        return redirect('admin/subcategory')->with('success', 'Sub Kategori Berhasil Dihapus');
     }
 }

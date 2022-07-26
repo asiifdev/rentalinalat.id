@@ -47,7 +47,7 @@
 </script>
 @endif
 <div class="modal fade" id="addModalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="top: 550px">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="top: 590px">
         <div class="modal-content mt-3" style="background-color: #0B0C21;">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
@@ -63,6 +63,10 @@
                                         <div class="form-group">
                                             <label for="kode"><span class="ml-2">Kode Produk</span></label>
                                             <input type="number" name="kode" class="form-control input-rounded" placeholder="Masukkan Kode Produk" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="stock"><span class="ml-2">Stock</span></label>
+                                            <input type="number" name="stock" class="form-control input-rounded" placeholder="Masukkan Stock Produk" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="name"><span class="ml-2">Nama Produk</span></label>

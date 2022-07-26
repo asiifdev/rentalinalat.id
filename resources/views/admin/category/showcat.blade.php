@@ -1,9 +1,6 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<div>
-    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#addModal" title="Tambah Kategori"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah</button>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">

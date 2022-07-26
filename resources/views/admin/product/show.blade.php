@@ -34,6 +34,17 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                                Stock Produk
+                            </div>
+                            <div class="col">
+                                =
+                            </div>
+                            <div class="col">
+                                {{ $item->stock }} Buah
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 Status
                             </div>
                             <div class="col">
