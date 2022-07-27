@@ -72,3 +72,4 @@ Route::post('/subcat',[ProductController::class, 'subCat'])->name('subcat');
 
 Route::get('/',[App\Http\Controllers\WebController::class, 'index'])->name('home');
 Route::get('/product',[App\Http\Controllers\Web\ProductController::class, 'index'])->name('produk');
+Route::get('/product/{slug}',[App\Http\Controllers\Web\ProductController::class, 'show'])->name('produk.show');

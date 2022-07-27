@@ -16,12 +16,19 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produk = Product::all();
-        $kategori = Category::where('parent_id', null)->get();
-        // dd($kategori);
+        
+        $data = Category::where('parent_id' , null)->count();
+        // for($i = 0;$i<=($data);$i++)
+        // {
+        //     $id = $i++;
+        // }
+        // dd($id++);
+        $produk = Product::where('status', 'active')->get();
+        $kategori = Category::where('parent_id', null)->with('parent')->get();
         return view('web.product.index',[
             'produk' => $produk,
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'count' => $data,
         ]);
     }
 
@@ -52,9 +59,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $produk = Product::where('slug', $slug)->get();
+        // dd($produk);
+        return view('web.product.show',
+        [
+            'produk' => $produk
+        ]);
     }
 
     /**

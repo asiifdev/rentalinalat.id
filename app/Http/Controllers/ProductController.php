@@ -79,11 +79,11 @@ class ProductController extends Controller
     public function update(Request $request, $id){
         $data = Product::findOrFail($id);
         // dd($data);
-        $image = $request->file('foto');
-        if (isset($image))
+        if (isset($request->foto))
         {
-            $new_name = $image->getClientOriginalExtension();
-            $image->move(public_path().'/images/produk', $new_name);
+            $nm = $request->foto;
+            $namafile = $nm->getClientOriginalName();
+            $nm->move(public_path().'/images/produk', $namafile);
             $data->update(array(
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
@@ -93,7 +93,7 @@ class ProductController extends Controller
                 'dayrate' => $request->dayrate,
                 'category_id' => $request->category_id,
                 'status' => $request->status,
-                'foto' => $new_name,
+                'foto' => $namafile,
             ));
         }
         $form_data = array(
