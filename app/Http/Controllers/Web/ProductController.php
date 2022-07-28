@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -30,6 +32,23 @@ class ProductController extends Controller
             'kategori' => $kategori,
             'count' => $data,
         ]);
+    }
+
+    public function filter(Request $request)
+    {
+           $start = Carbon::parse($request->start_date);
+           $end = Carbon::parse($request->end_date);
+
+           if($request->ajax()){
+                if($request->from_date != '' && $request->to_date != '' ){
+                    $data = Order::whereBetween('pickUpDate', array($start,$end))->get();
+                }
+                else
+                {
+                    $data = 'Tidak Ditemukan';
+                }
+                return json_encode($data);
+           }
     }
 
     /**
@@ -62,10 +81,12 @@ class ProductController extends Controller
     public function show($slug)
     {
         $produk = Product::where('slug', $slug)->get();
-        // dd($produk);
+        $related = Product::where('category_id', $produk[0]->category_id)->where('id', '!=', $produk[0]->id)->latest()->limit(4)->get();
+        // dd($related);
         return view('web.product.show',
         [
-            'produk' => $produk
+            'produk' => $produk,
+            'related' => $related
         ]);
     }
 

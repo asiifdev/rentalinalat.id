@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
+<html lang="id, in">
 
 <head>
     <!-- Required meta tags -->
@@ -128,8 +129,10 @@
     </script>
 
     <!-- fraimwork - jquery include -->
-    <script src="{{ asset('web/automotive/js/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ asset('web/automotive/js/popper.min.js') }}"></script>
+    {{-- <script src="{{ asset('web/automotive/js/jquery-3.5.1.min.js') }}"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="{{ asset('web/automotive/js/popper.min.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="{{ asset('web/automotive/js/bootstrap.min.js') }}"></script>
 
     <!-- animation - jquery include -->
@@ -155,7 +158,8 @@
     <script src="{{ asset('web/automotive/js/gmaps.min.js') }}"></script>
 
     <!-- pricing range - jquery include -->
-    <script src="{{ asset('web/automotive/js/jquery-ui.js') }}"></script>
+    {{-- <script src="{{ asset('web/automotive/js/jquery-ui.js') }}"></script> --}}
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <!-- counter - jquery include -->
     <script src="{{ asset('web/automotive/js/waypoint.js') }}"></script>

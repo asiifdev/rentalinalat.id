@@ -41,11 +41,3 @@ $('#collapse_3 .productToDate').datepicker({
   prevText: "Earlier",
   showStatus: true,
 });
-
-$('#collapse_3 input ui-datepicker-header a.ui-datepicker-next').css([
-  'top','200px'
-]);
-
-if($('.btn-nav-accordion[aria-expanded="false"]')){
-  $("div.ui-datepicker-header a.ui-datepicker-prev,div.ui-datepicker-header a.ui-datepicker-next").hide();
-}
