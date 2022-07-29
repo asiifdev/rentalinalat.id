@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('username');
             $table->string('address');
             $table->string('ktp');
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
+            // $table->unsignedBigInteger('order_id');
+            // $table->foreign('order_id')->references('id')->on('orders');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

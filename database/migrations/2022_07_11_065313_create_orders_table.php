@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('pickUpLocation');
-            $table->string('dropOffLocation');
-            $table->dateTime('pickUpDate');
-            $table->dateTime('dropOffDate');
+            $table->string('status');
+            $table->string('lokasi_ambil');
+            $table->string('lokasi_pengembalian');
+            $table->dateTime('from_date');
+            $table->dateTime('to_date');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            // $table->unsignedBigInteger('customer_id');
-            // $table->foreign('customer_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();
         });
     }

@@ -12,6 +12,10 @@ class Customer extends Model
     protected $guarded = [];
 
     public function order(){
-        $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'customer_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

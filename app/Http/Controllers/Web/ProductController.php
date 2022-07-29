@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use stdClass;
 
 class ProductController extends Controller
 {
@@ -18,7 +21,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
         $data = Category::where('parent_id' , null)->count();
         // for($i = 0;$i<=($data);$i++)
         // {
@@ -36,19 +38,24 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-           $start = Carbon::parse($request->start_date);
-           $end = Carbon::parse($request->end_date);
+        $start = Carbon::parse($request->start_date);
+        $end = Carbon::parse($request->end_date);
+    //    $start = Carbon::parse('2022-07-29 13:35:47');
+    //    $end = Carbon::parse('2022-07-29 13:35:47');
 
-           if($request->ajax()){
-                if($request->from_date != '' && $request->to_date != '' ){
-                    $data = Order::whereBetween('pickUpDate', array($start,$end))->get();
-                }
-                else
-                {
-                    $data = 'Tidak Ditemukan';
-                }
-                return json_encode($data);
-           }
+    //    $data = User::with('customer')->get();
+        $data = Order::whereBetween('from_date', [$start,$end])->get();
+        $json = json_decode($data);
+        $empty = new stdClass;
+        $kosong = 'Tersedia';
+        $terisi = 'Tidak Tersedia';
+        if($json != null)
+        {
+            return $terisi;
+        }
+        else{
+            return $kosong;
+        }
     }
 
     /**

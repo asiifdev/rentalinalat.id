@@ -7,6 +7,12 @@
             $('#grid').css('display', 'none');
             $('#btn-row').removeClass('btn-outline-danger').addClass('btn-danger active');
             $('#btn-grid').removeClass('btn-danger active').addClass('btn-outline-danger');
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                    $("#row #data").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         }
 
         function grid() {
@@ -14,32 +20,18 @@
             $('#row').css('display', 'none');
             $('#btn-grid').removeClass('btn-outline-danger').addClass('btn-danger active');
             $('#btn-row').removeClass('btn-danger active').addClass('btn-outline-danger');
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                    $("#grid #data").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         }
     </script>
     <script>
         $(document).ready(function() {
            grid(); 
         });
-        // function filter(){
-        //     if ($('#grid').css('display') == '') {
-        //         $('#grid div figure figcaption div a').each(function(){
-        //             $(this).attr('searchData', $(this).text().toLowerCase());
-        //             console.log($(this));
-        //         });
-        //         $('.boxSearch').on('keyup', function(){
-        //         var dataList = $(this).val().toLowerCase();
-        //         console.log(dataList);
-        //         $('#grid').each(function(){
-        //                 console.log($(this));
-        //                 if ($(this).filter('[searchData *= ' + dataList + ']').length > 0 || dataList.length < 1) {
-        //                     $(this).show();
-        //                 } else {
-        //                     $(this).show();
-        //                 }
-        //             });
-        //         });
-        //     }
-        // }
     </script>
     <style>
         .productFromDate .ui-datepicker-header a.ui-datepicker-next {
@@ -229,8 +221,8 @@
                                         <span class="input-group-text border-0 mt-2" id="search-addon">
                                             <i style="" class="bi bi-search"></i>
                                         </span>
-                                        <input type="search" class="form-control rounded border-0 boxSearch" placeholder="Search"
-                                            aria-label="Search" aria-describedby="search-addon" />
+                                        <input type="search" class="form-control rounded border-0 boxSearch" placeholder="Cari Produk"
+                                            aria-label="Search" aria-describedby="search-addon" id="search" />
                                     </div>
                                 </form>
                             </div>
@@ -239,14 +231,14 @@
                 </header><!-- sect-heading -->
                 <div class="row text-center" id="grid">
                     @foreach ($produk as $item)
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 col-xxl-4">
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 col-xxl-4" id="data">
                             <figure class="card card-product-grid">
                                 <div class="img-wrap" style="height: 216px">
                                     <img src="{{ asset('images/produk/' . $item->foto) }}" class="img-fluid img-produk">
                                 </div> <!-- img-wrap.// -->
                                 <figcaption class="info-wrap">
                                     <div class="fix-height listSearch">
-                                        <a href="{{ url('product/' . $item->slug) }}" class="title"><b>{{ $item->name }}</b></a>
+                                        <a href="{{ url('product/' . $item->slug) }}" class="title" id="nama-produk"><b>{{ $item->name }}</b></a>
                                         <div class="price-wrap mt-4">
                                             <span class="textProduct">Harga Sewa</span><br>
                                             <span class="price">{{ moneyFormat($item->dayRate) }}<span
@@ -260,7 +252,7 @@
                 </div> <!-- row end.// -->
                 <div class="row text-center" id="row">
                     @foreach ($produk as $item)
-                        <div class="col-lg-12 card card-product-grid m-2">
+                        <div class="col-lg-12 card card-product-grid m-2" id="data">
                             <div class="row row_item">
                                 <div class="col-sm-4">
                                     <figure>
