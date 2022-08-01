@@ -13,20 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('qty');
-            $table->integer('jumlah_hari');
-            $table->bigInteger('price');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->integer('rating');
+            $table->text('review');
             $table->timestamps();
-
-            //relationship invoice
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-
+      
             //relationship product
             $table->foreign('product_id')->references('id')->on('products');
+      
+            //relationship order
+            $table->foreign('order_id')->references('id')->on('orders');
+                  
+            //relationship customer
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 
@@ -37,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('reviews');
     }
 };

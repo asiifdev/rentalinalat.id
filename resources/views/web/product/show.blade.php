@@ -32,6 +32,7 @@
     <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script>
         $(document).ready(function() {
+            $('#submitcart').prop('disabled', true);
             var dateToday = new Date();
             // var fordate = $(".forDate").datepicker();
             // console.log(fordate);
@@ -46,20 +47,47 @@
         function bacaTanggal() {
             var fordate = $(".forDate").val();
             var todate = $(".toDate").val();
-            console.log('Dari Tanggal: ' + fordate + ' Sampai Tanggal: ' + todate);
-            if(fordate > todate){
-                $("#status").text('Silahkan Refresh Dulu Browser Anda');
+            var harga = $("#harga").text().replace(/[A-Za-z$-/]/g, "");
+            var productId = $('#id_produk').val();
+            // console.log(productId);
+            days = (Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24);
+            // Create our number formatter.
+            var formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            });
+            total = days * harga;
+            // console.log(total);
+            // console.log('Dari Tanggal: ' + fordate + ' Sampai Tanggal: ' + todate);
+            if(Date.parse(todate) < Date.parse(fordate)){
+                $("#status").text('Input Tanggal tidak sesuai!');
+                $("#total").val('Rp. 0');
+                $("#jumlah_hari").val('0');
+                $('#submitcart').prop('disabled', true);
+            }
+            else if(Date.parse(todate) === Date.parse(fordate)){
+                $("#status").text('Minimal Order 1 Hari!');
+                $("#total").val('Rp. 0');
+                $("#jumlah_hari").val('0');
+                $('#submitcart').prop('disabled', true);
             }
             else{
                 $.ajax({
                     type:'GET',
-                    url:'/ajax/filterdate?start_date=' + fordate + '&end_date=' + todate,
+                    url:'/ajax/filterdate?fromdate=' + fordate + '&todate=' + todate + '&product_id=' + productId,
                     data:'_token = <?php echo csrf_token() ?>',
                     success:function(data) {
                         $("#status").text(data);
-                        console.log(data);
+                        console.log($("#status").text());
+                        if ($("#status").text() === 'Tidak Tersedia'){
+                            $("#total").val('Rp. 0');
+                            $('#submitcart').prop('disabled', true);
+                        }
                     }
                 });
+                $("#total").val(formatter.format(total));
+                $("#jumlah_hari").val((Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24));
+                $('#submitcart').prop('disabled', false);
             }
         }
 
@@ -83,22 +111,27 @@
                         showAnim: "show",
                         showStatus: true,
                         onSelect: function() {
-                            var dateObject = $(this).datepicker('getDate');
-                            // console.log(dateObject);
-                            $(function() {
-                                $(".toDate").each(function() {
-                                    $(this).datepicker({
-                                        dateFormat: "DD, dd MM yy",
-                                        duration: "fast",
-                                        minDate: dateObject,
-                                        showStatus: true,
-                                        showAnim: "slide",
-                                    });
-                                });
-                            });
+                            $(this).each(function(){
+                                getdate();
+                            })
                         }
                     });
                 })
+            });
+        }
+        function getdate() {
+            var dateObject = $(this).datepicker('getDate');
+                            // console.log(dateObject);
+            $(function() {
+                $(".toDate").each(function() {
+                    $(this).datepicker({
+                        dateFormat: "DD, dd MM yy",
+                        duration: "fast",
+                        minDate: dateObject,
+                        showStatus: true,
+                        showAnim: "slide",
+                    });
+                });
             });
         }
     </script>
@@ -114,16 +147,21 @@
                 </div>
                 <div class="col-lg-8 text-start m-auto mt-3">
                     <figcaption class="ms-3">
-                        <form action="POST">
+                        <form action="{{ route('ajax.cart') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="fix-height listSearch">
                                 <a href="{{ url('product/' . $item->slug) }}">
                                     <span class="title">{{ $item->name }}</span>
+                                    @auth
+                                        <input type="text" name="user_id" id="user_id" value="{{ auth()->user()->id }}" hidden>
+                                    @endauth
+                                    <input type="text" name="product_id" id="id_produk" value="{{ $item->id }}" hidden>                                        
+                                    <input type="text" name="jumlah_hari" id="jumlah_hari" value="" hidden>
                                 </a>
                                 <div class="mt-3 p-2">
                                     <span class="description">{{ $item->description }}</span><br><br>
                                     <span class="description">Harga Sewa</span><br>
-                                    <span class="price">{{ moneyFormat($item->dayRate) }}<span
+                                    <span class="price" id="harga">{{ moneyFormat($item->dayRate) }}<span
                                             class="textDay">/Day</span></span>
                                 </div> <!-- price-wrap.// -->
 
@@ -136,7 +174,7 @@
                                                 <i class="bi bi-calendar-date me-2"></i>
                                             </span>
                                             <input type="search" class="form-control rounded border-0 boxSearch forDate"
-                                                placeholder="Dari Tanggal" aria-label="Search" aria-describedby="forDate" name="start_date" />
+                                                placeholder="Dari Tanggal" aria-label="Search" aria-describedby="forDate" name="fromdate"  autocomplete="off" required/>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-xxl-4 col-xl-6 col-md-6 col-sm-6">
@@ -145,8 +183,8 @@
                                                 <i class="bi bi-calendar-date-fill me-2"></i>
                                             </span>
                                             <input type="search" class="form-control rounded border-0 boxSearch toDate"
-                                                placeholder="Sampai Tanggal" aria-label="Search" name="end_date"
-                                                aria-describedby="toDate" />
+                                                placeholder="Sampai Tanggal" aria-label="Search" name="todate"
+                                                aria-describedby="toDate" autocomplete="off" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -160,11 +198,11 @@
                                         </span>
                                     </span><br><br>
                                     <span class="mt-2">Total</span><br>
-                                    <span class="price" id="total">{{ moneyFormat(0) }}</span>
+                                    <input class="price" id="total" name="total" value="{{ moneyFormat(0) }}" autocomplete="off" readonly="readonly" required/>
                                 </div>
                                 <div class="p-5 pt-2 ps-2">
-                                    <a class="btn btn-lg-lg btn-custom" style="width: 50%" href="">Masukkan Ke
-                                        Keranjang</a>
+                                    <button id="submitcart" class="btn btn-lg-lg btn-custom addToCart" type="submit" style="width: 50%" href="">Masukkan Ke
+                                        Keranjang</button>
                                 </div>
                             </div>
                         </form>

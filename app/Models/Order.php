@@ -11,13 +11,38 @@ class Order extends Model
     protected $table = 'orders';
     protected $guarded = [];
 
-    public function product()
+    // public function cart()
+    // {
+    //     return $this->hasMany(Cart::class, 'id');
+    // }
+
+    /**
+     * invoice
+     *
+     * @return void
+     */
+    public function invoices()
     {
-        return $this->hasMany(Product::class, 'id');
+        return $this->belongsTo(Invoice::class, 'invoice_id');
     }
 
-    public function customer()
+    /**
+     * reviews
+     *
+     * @return void
+     */
+    public function reviews()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * product
+     *
+     * @return void
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

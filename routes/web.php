@@ -74,3 +74,6 @@ Route::get('/',[App\Http\Controllers\WebController::class, 'index'])->name('home
 Route::get('/product',[App\Http\Controllers\Web\ProductController::class, 'index'])->name('produk');
 Route::get('/product/{slug}',[App\Http\Controllers\Web\ProductController::class, 'show'])->name('produk.show');
 Route::get('/ajax/filterdate',[App\Http\Controllers\Web\ProductController::class, 'filter'])->name('ajax.filterdate');
+Route::middleware('role:user')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');
+Route::middleware('role:user')->get('/{id}/cart',[App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+// Route::middleware('role:admin')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');

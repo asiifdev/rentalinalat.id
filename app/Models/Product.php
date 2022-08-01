@@ -25,9 +25,23 @@ class Product extends Model
     {
        return $this->belongsTo(Category::class, 'category_id');
     }
+    public function invoice()
+    {
+       return $this->belongsTo(Invoice::class, 'product_id');
+    }
 
     public function order()
     {
-       return $this->belongsTo(Order::class, 'product_id');
+       return $this->hasMany(Order::class, 'product_id');
+    }
+
+      /**
+     * reviews
+     *
+     * @return void
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
