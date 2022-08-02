@@ -1,5 +1,46 @@
+<link rel="stylesheet" href="{{ asset('web/css/responsive.css') }}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            count();
+            cart();
+        });
+        function count(){
+            var id = $('#id_user').val();
+            console.log(id);
+            $.ajax({
+                type:'GET',
+                url:'/ajax/cart-count?user_id=' + id,
+                data:'_token = <?php echo csrf_token() ?>',
+                success:function(data) {
+                    $("#cart-total").text(data);
+                    console.log($("#status").text());
+                }
+            });
+        }
+        function cart(){
+            var id = $('#id_user').val();
+            // console.log(id);
+            $.get('/ajax/cart-navbar?user_id=' + id,function(data) {
+                    // $("#cart-total").text(data);
+                    $.each(data,function(){
+                        $.each(this,function(index, value){
+                            $('li a div .col-8 #cart-name').each(function(){
+                                console.log(value.name);
+                                $( this ).text(value.name);
+                            });
+                        });
+                    });
+                }
+            );
+        }
+    </script>
+    
     <!-- Navbar - start
     ================================================== -->
+    <input type="text" disabled hidden value="{{ auth()->user()->id }}" id="id_user" name="id_user">
     <nav class="navbar sticky-top navbar-expand-lg mt-1 navbar-light bg-white">
         <div class="container-fluid justify-content-between">
             <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="{{ url('/') }}">
@@ -36,12 +77,27 @@
                 @auth
                     @if (auth()->user()->hasRole('user'))
                         <div class="align-items-center ms-2 me-3 mb-1" style="position: relative;">
-                            <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1">
+                            <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1 search-navbar" role="button" data-toggle="collapse" data-target="#searchnavbar" aria-expanded="false">
                                 <i class="bi bi-search"></i>
                             </a>
-                            <a href="" style="color: #CC1522;font-size: 28px;" class="m-1">
-                                <i class="bi bi-cart3"></i>
+
+                            <a href="" style="color: #CC1522;font-size: 28px;" class="m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-cart3"></i><span id="cart-total" class="badge rounded-pill badge-notification bg-danger count-cart" style="">0</span>
                             </a>
+                            <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="#">  
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{ asset('web/images/logo.png') }}" alt="" />
+                                            </div>
+                                            <div class="col-8">
+                                                <span id="cart-name">Nama Item</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     @endif
                 @endauth
@@ -94,5 +150,9 @@
             </div>
         </div>
     </nav>
+    <div class="ms-5 me-5 collapse ps-5 pe-5" id="searchnavbar">
+        <input type="text" class="p-1 form-control" placeholder="cari">
+    </div>
+
     <!-- Navbar - end
     ================================================== -->

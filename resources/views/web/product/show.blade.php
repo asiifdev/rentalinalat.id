@@ -49,7 +49,7 @@
             var todate = $(".toDate").val();
             var harga = $("#harga").text().replace(/[A-Za-z$-/]/g, "");
             var productId = $('#id_produk').val();
-            // console.log(productId);
+            console.log(todate);
             days = (Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24);
             // Create our number formatter.
             var formatter = new Intl.NumberFormat('id-ID', {
@@ -74,7 +74,7 @@
             else{
                 $.ajax({
                     type:'GET',
-                    url:'/ajax/filterdate?fromdate=' + fordate + '&todate=' + todate + '&product_id=' + productId,
+                    url:'/ajax/filterdate?start_date=' + fordate + '&end_date=' + todate + '&product_id=' + productId,
                     data:'_token = <?php echo csrf_token() ?>',
                     success:function(data) {
                         $("#status").text(data);

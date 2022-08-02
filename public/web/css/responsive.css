@@ -1,0 +1,86 @@
+.cart-menu{
+    width: 500%;
+    left: -300% !important;
+}
+.count-cart{
+    font-size: 35%; 
+    top: -2%;
+    position: absolute;
+    left: 85%;
+}
+@media screen and (max-width: 990px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 7.5%;
+    }
+    .cart-menu{
+        width: 100%;
+        left: 0 !important;
+    }
+}
+@media screen and (max-width: 870px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 8%;
+    }
+}
+@media screen and (max-width: 800px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 9%;
+    }
+}
+@media screen and (max-width: 712px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 10%;
+    }
+}
+@media screen and (max-width: 646px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 11%;
+    }
+}
+@media screen and (max-width: 578px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 13%;
+    }
+}
+@media screen and (max-width: 572px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 18%;
+    }
+}
+@media screen and (max-width: 424px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 25%;
+    }
+}
+@media screen and (max-width: 308px){
+    .count-cart{
+        font-size: 35%; 
+        top: -6% !important;
+        position: absolute;
+        left: 38%;
+    }
+}

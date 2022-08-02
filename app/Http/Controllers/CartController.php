@@ -14,9 +14,20 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
+    public function count(Request $request)
     {
-        $cart = Cart::where('user_id', $user_id)->get();
+        $cart = Cart::where('user_id', $request->user_id)->count();
+        return response()->json($cart);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $cart = Cart::where('user_id', $request->user_id)->with('product')->get();
         return response()->json($cart);
     }
 
@@ -27,6 +38,7 @@ class CartController extends Controller
      */
     public function create(Request $request)
     {
+        $this->middleware('auth');
         $cart = new Cart();
         $cart->user_id = $request->user_id;
         $cart->product_id = $request->product_id;

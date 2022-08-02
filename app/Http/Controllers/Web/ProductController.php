@@ -39,14 +39,15 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-        $start = Carbon::parse($request->start_date);
-        $end = Carbon::parse($request->end_date);
+        $start = Carbon::parse($request->start_date)->format('Y-m-d');
+        $end = Carbon::parse($request->end_date)->format('Y-m-d');
         $id_product = $request->product_id;
 
     //    $data = User::with('customer')->get();
         // $data = Order::whereBetween('from_date', [$start,$end])->get();
-        $test = Invoice::with('product')->whereBetween('fromdate', [$start,$end])->where('product_id', $id_product)->get();
-        // dd($test);
+        $test = Invoice::with('product')->where('product_id', $id_product)->whereBetween('fromdate', [$start,$end])->get();
+        // $test = Invoice::with('product')->where('product_id', $id_product)->whereDate('fromdate','>',$start)->whereDate('fromdate','<=',$end)->get();
+        // dd($start);
         // $cek = Order::where('product_id', $id)->get();
         $json = json_decode($test);
         $empty = new stdClass;
