@@ -40,7 +40,9 @@
     
     <!-- Navbar - start
     ================================================== -->
-    <input type="text" disabled hidden value="{{ auth()->user()->id }}" id="id_user" name="id_user">
+    @auth
+        <input type="text" disabled hidden value="{{ auth()->user()->id }}" id="id_user" name="id_user">
+    @endauth
     <nav class="navbar sticky-top navbar-expand-lg mt-1 navbar-light bg-white">
         <div class="container-fluid justify-content-between">
             <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="{{ url('/') }}">
@@ -66,12 +68,19 @@
                 </ul>
                 @guest
                     <div class="align-items-center ms-2 me-3 mb-1" style="position: relative;">
-                        <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1">
+                        <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1 search-navbar" role="button" data-toggle="collapse" data-target="#searchnavbar" aria-expanded="false">
                             <i class="bi bi-search"></i>
                         </a>
-                        <a href="" style="color: #CC1522;font-size: 28px;" class="m-1">
-                            <i class="bi bi-cart3"></i>
+                        <a href="" style="color: #CC1522;font-size: 28px;" class="m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-cart3"></i><span id="cart-total" class="badge rounded-pill badge-notification bg-danger count-cart" style="">0</span>
                         </a>
+                        <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('login') }}">  
+                                    Login Terlebih Dahulu
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 @endguest
                 @auth
