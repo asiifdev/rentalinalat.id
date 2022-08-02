@@ -1,6 +1,5 @@
 @extends('layouts.web.app')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function row() {
             $('#row').css('display', '');

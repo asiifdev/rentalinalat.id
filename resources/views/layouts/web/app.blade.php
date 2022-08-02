@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/product.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 
     <title>Rentalin Alat</title>
 </head>
@@ -130,7 +132,6 @@
 
     <!-- fraimwork - jquery include -->
     {{-- <script src="{{ asset('web/automotive/js/jquery-3.5.1.min.js') }}"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{-- <script src="{{ asset('web/automotive/js/popper.min.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="{{ asset('web/automotive/js/bootstrap.min.js') }}"></script>
@@ -159,7 +160,6 @@
 
     <!-- pricing range - jquery include -->
     {{-- <script src="{{ asset('web/automotive/js/jquery-ui.js') }}"></script> --}}
-    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <!-- counter - jquery include -->
     <script src="{{ asset('web/automotive/js/waypoint.js') }}"></script>
