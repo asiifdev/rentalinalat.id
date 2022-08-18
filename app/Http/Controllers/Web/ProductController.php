@@ -28,8 +28,9 @@ class ProductController extends Controller
         //     $id = $i++;
         // }
         // dd($id++);
-        $produk = Product::where('status', 'active')->get();
+        $produk = Product::where('status', 'active')->with('category')->get();
         $kategori = Category::where('parent_id', null)->with('parent')->get();
+        // dd($produk);
         return view('web.product.index',[
             'produk' => $produk,
             'kategori' => $kategori,

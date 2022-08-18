@@ -12,6 +12,19 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+            $(".filters :checkbox").click(function() {
+                var centang = $(".filters :checkbox").is(':checked');
+                if(centang == true){
+                    var value = $(this).val().toLowerCase();
+                    $("#row #data").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                    console.log(value);
+                }
+                else{
+                    $("#row #data").css('display', '');
+                }
+            });
         }
 
         function grid() {
@@ -25,50 +38,129 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+            $(".filters :checkbox").click(function() {
+                var centang = $(".filters :checkbox").is(':checked');
+                if(centang == true){
+                    var value = $(this).val().toLowerCase();
+                    $("#grid #data").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                    console.log(value);
+                }
+                else{
+                    $("#grid #data").css('display', '');
+                }
+            });
         }
     </script>
     <script>
         $(document).ready(function() {
-           grid(); 
-        });
+           grid();
+           var dateToday = new Date();
+            // var fordate = $(".forDate").datepicker();
+            // console.log(fordate);
+            filterTanggal();
+            $(".forDate,.toDate").change(function() {
+                    bacaTanggal();
+                });
+                hapus();
+            });
     </script>
+    <script>
+        function bacaTanggal() {
+            var fordate = $(".forDate").val();
+            var todate = $(".toDate").val();
+            var harga = $("#harga").text().replace(/[A-Za-z$-/]/g, "");
+            var productId = $('#id_produk').val();
+            console.log(todate);
+            days = (Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24);
+            // Create our number formatter.
+            var formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            });
+            total = days * harga;
+            // console.log(total);
+            // console.log('Dari Tanggal: ' + fordate + ' Sampai Tanggal: ' + todate);
+            if(Date.parse(todate) < Date.parse(fordate)){
+                $("#status").text('Input Tanggal tidak sesuai!');
+                $("#total").val('Rp. 0');
+                $("#jumlah_hari").val(' Input Salah!').attr('style', 'color:red;font-weight:bold');
+                $('#submitcart').prop('disabled', true);
+            }
+            else if(Date.parse(todate) === Date.parse(fordate)){
+                $("#status").text('Minimal Order 1 Hari!');
+                $("#total").val('Rp. 0');
+                $("#jumlah_hari").val(' Input Salah!').attr('style', 'color:red;font-weight:bold');
+                $('#submitcart').prop('disabled', true);
+            }
+            else{
+                $.ajax({
+                    type:'GET',
+                    url:'/ajax/filterdate?start_date=' + fordate + '&end_date=' + todate + '&product_id=' + productId,
+                    data:'_token = <?php echo csrf_token() ?>',
+                    success:function(data) {
+                        $("#status").text(data);
+                        console.log($("#status").text());
+                        if ($("#status").text() === 'Tidak Tersedia'){
+                            $("#total").val('Rp. 0');
+                            $('#submitcart').prop('disabled', true);
+                        }
+                    }
+                });
+                $("#total").val(formatter.format(total));
+                $("#jumlah_hari").val(' ' + (Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24) + ' Hari').attr('style', 'color:red;font-weight:bold');
+                $('#submitcart').prop('disabled', false);
+            }
+        }
+
+        function hapus() {
+            $(".forDate").click(function() {
+                $(".forDate").val("");
+                $(".toDate").val("");
+                filterTanggal();
+            });
+        }
+
+        function filterTanggal() {
+            $(function() {
+                $(".forDate").each(function() {
+                    $(this).datepicker({
+                        locale: "id",
+                        dateFormat: "DD, dd MM yy",
+                        duration: "fast",
+                        regional: "id",
+                        minDate: dateToday,
+                        showAnim: "show",
+                        showStatus: true,
+                        onSelect: function() {
+                            $(this).each(function(){
+                                getdate();
+                            })
+                        }
+                    });
+                })
+            });
+        }
+        function getdate() {
+            var dateObject = $(this).datepicker('getDate');
+                            // console.log(dateObject);
+            $(function() {
+                $(".toDate").each(function() {
+                    $(this).datepicker({
+                        dateFormat: "DD, dd MM yy",
+                        duration: "fast",
+                        minDate: dateObject,
+                        showStatus: true,
+                        showAnim: "slide",
+                    });
+                });
+            });
+        }
+    </script>
+
+
     <style>
-        .productFromDate .ui-datepicker-header a.ui-datepicker-next {
-            right: 0;
-            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj48cGF0aCBmaWxsPSIjNDI0NzcwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjI4OCA2LjI5NkwzLjIwMiAyLjIxYS43MS43MSAwIDAgMSAuMDA3LS45OTljLjI4LS4yOC43MjUtLjI4Ljk5OS0uMDA3TDguODAzIDUuOGEuNjk1LjY5NSAwIDAgMSAuMjAyLjQ5Ni42OTUuNjk1IDAgMCAxLS4yMDIuNDk3bC00LjU5NSA0LjU5NWEuNzA0LjcwNCAwIDAgMS0xLS4wMDcuNzEuNzEgMCAwIDEtLjAwNi0uOTk5bDQuMDg2LTQuMDg2eiIvPjwvc3ZnPg==);
-            background-repeat: no-repeat;
-            background-size: 10px;
-            background-position: 50%;
-            top: 35px;
-        }
-
-        .productFromDate .ui-datepicker-header a.ui-datepicker-prev {
-            right: 0;
-            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj48cGF0aCBmaWxsPSIjNDI0NzcwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjI4OCA2LjI5NkwzLjIwMiAyLjIxYS43MS43MSAwIDAgMSAuMDA3LS45OTljLjI4LS4yOC43MjUtLjI4Ljk5OS0uMDA3TDguODAzIDUuOGEuNjk1LjY5NSAwIDAgMSAuMjAyLjQ5Ni42OTUuNjk1IDAgMCAxLS4yMDIuNDk3bC00LjU5NSA0LjU5NWEuNzA0LjcwNCAwIDAgMS0xLS4wMDcuNzEuNzEgMCAwIDEtLjAwNi0uOTk5bDQuMDg2LTQuMDg2eiIvPjwvc3ZnPg==);
-            background-repeat: no-repeat;
-            background-size: 10px;
-            background-position: 50%;
-            top: 35px;
-        }
-
-        .productToDate .ui-datepicker-header a.ui-datepicker-next {
-            right: 0;
-            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj48cGF0aCBmaWxsPSIjNDI0NzcwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjI4OCA2LjI5NkwzLjIwMiAyLjIxYS43MS43MSAwIDAgMSAuMDA3LS45OTljLjI4LS4yOC43MjUtLjI4Ljk5OS0uMDA3TDguODAzIDUuOGEuNjk1LjY5NSAwIDAgMSAuMjAyLjQ5Ni42OTUuNjk1IDAgMCAxLS4yMDIuNDk3bC00LjU5NSA0LjU5NWEuNzA0LjcwNCAwIDAgMS0xLS4wMDcuNzEuNzEgMCAwIDEtLjAwNi0uOTk5bDQuMDg2LTQuMDg2eiIvPjwvc3ZnPg==);
-            background-repeat: no-repeat;
-            background-size: 10px;
-            background-position: 50%;
-            top: 400px;
-        }
-
-        .productToDate .ui-datepicker-header a.ui-datepicker-prev {
-            right: 0;
-            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj48cGF0aCBmaWxsPSIjNDI0NzcwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjI4OCA2LjI5NkwzLjIwMiAyLjIxYS43MS43MSAwIDAgMSAuMDA3LS45OTljLjI4LS4yOC43MjUtLjI4Ljk5OS0uMDA3TDguODAzIDUuOGEuNjk1LjY5NSAwIDAgMSAuMjAyLjQ5Ni42OTUuNjk1IDAgMCAxLS4yMDIuNDk3bC00LjU5NSA0LjU5NWEuNzA0LjcwNCAwIDAgMS0xLS4wMDcuNzEuNzEgMCAwIDEtLjAwNi0uOTk5bDQuMDg2LTQuMDg2eiIvPjwvc3ZnPg==);
-            background-repeat: no-repeat;
-            background-size: 10px;
-            background-position: 50%;
-            top: 400px;
-        }
-
         .btn-nav-accordion[aria-expanded="true"] .fa-chevron-down {
             transform: rotate(180deg);
         }
@@ -111,6 +203,20 @@
         .filter-content {
             margin-top: 0px;
         }
+        .label_kategori{
+            font-size: 1rem;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 0;
+            color: black;
+            border: none;
+            padding: 0;
+            border-radius: 0;
+        }
+        .form-check-input:checked {
+            background-color: #CC1522;
+            border-color: #CC1522;
+        }
     </style>
     <div class="container-fluid p-lg-5 p-0 mt-5 mt-md-0 mt-lg-0">
         <div class="row p-lg-5 p-4">
@@ -119,41 +225,37 @@
                     <div class="tanggal d-inline-block">
                         <article class="filter-group">
                             <header class="card-header" id="collapse_tanggal">
-                                <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false"
-                                    class="btn-nav-accordion">
-                                    <i class="icon-control fa fa-chevron-down"></i>
-                                    <h6 class="title"><i class="bi bi-calendar-date me-2 filter"></i> Dari Tanggal</h6>
-                                </a>
-                            </header>
-                            <div class="filter-content collapse" id="collapse_2">
-                                <div class="card-body m-auto">
-                                    <div class="productFromDate">
-
-                                    </div>
+                                <div class="input-group rounded">
+                                    <span class="input-group-text border-0 mt-2" id="forDate">
+                                        <i class="bi bi-calendar-date me-2"></i>
+                                    </span>
+                                    <input type="search" class="form-control rounded border-0 boxSearch forDate"
+                                        placeholder="Dari Tanggal" aria-label="Search" aria-describedby="forDate" name="fromdate"  autocomplete="off" required/>
                                 </div>
-                            </div>
+                            </header>
                         </article> <!-- filter-group  .// -->
 
                         <article class="filter-group">
                             <header class="card-header">
-                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false"
-                                    class="btn-nav-accordion" onclick="">
-                                    <i class="icon-control fa fa-chevron-down" style="rotate"></i>
-                                    <h6 class="title"><i class="bi bi-calendar-date-fill me-2 filter"></i> Sampai Tanggal
-                                    </h6>
-                                </a>
-                            </header>
-                            <div class="filter-content collapse" id="collapse_3">
-                                <div class="card-body">
-                                    <div class="productToDate">
-
-                                    </div>
+                                <div class="input-group rounded">
+                                    <span class="input-group-text border-0 mt-2" id="toDate">
+                                        <i class="bi bi-calendar-date-fill me-2"></i>
+                                    </span>
+                                    <input type="search" class="form-control rounded border-0 boxSearch toDate"
+                                        placeholder="Sampai Tanggal" aria-label="Search" name="todate"
+                                        aria-describedby="toDate" autocomplete="off" required/>
                                 </div>
-                            </div>
+                            </header>
                         </article> <!-- filter-group  .// -->
                         <div class="m-auto p-2 text-center">
+                            <div class="input-group p-2">
+                                <div class="input-group-text" style="background: transparent; border:none;line-height: 0;padding: 0;">
+                                    <label for="" class="label_kategori">Jumlah Hari: </label>
+                                    <input style="color: black" class="form-input mt-0 me-2" id="jumlah_hari" type="text" value=" 0 Hari" readonly>
+                                </div>
+                            </div>
                             <button class="btn btn-custom" style="width: 100%;">
-                                FILTER
+                                <span id="status">FILTER</span>
                             </button>
                         </div>
                     </div>
@@ -161,7 +263,6 @@
                         <header class="card-header text-center m-auto">
                             <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true"
                                 class="btn-nav-accordion">
-                                {{-- <i class="icon-control fa fa-chevron-down mb-2"></i> --}}
                                 <h6 class="title mt-2"><b>Kategori</b></h6>
                             </a>
                         </header>
@@ -179,12 +280,19 @@
                                                         <h6 class="title">{{ $item->name }}</h6>
                                                     </a>
                                                 </header>
-                                                <div class="filter-content collapse mt-0" id="{{ Str::slug($item->name) }}"
+                                                <div class="filter-content collapse mt-0 filters" id="{{ Str::slug($item->name) }}"
                                                     style="">
                                                     <div class="card-body">
                                                         <ul class="list-menu">
                                                             @foreach ($item->parent->sortBy('name') as $s)
-                                                                <li><a href="#">{{ ucwords($s->name) }}</a></li>
+                                                                <li>
+                                                                    <div class="input-group mb-2">
+                                                                        <div class="input-group-text" style="background: transparent; border:none;line-height: 0;padding: 0;">
+                                                                          <input class="form-check-input mt-0 me-2" id="{{ urlencode($s->name) }}" type="checkbox" value="{{ urlencode($s->name) }}" aria-label="Checkbox for following text input">
+                                                                          <label for="{{ urlencode($s->name) }}" class="label_kategori">{{ $s->name }}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
                                                             @endforeach
                                                         </ul>
                                                     </div> <!-- card-body.// -->
@@ -230,7 +338,8 @@
                 </header><!-- sect-heading -->
                 <div class="row text-center" id="grid">
                     @foreach ($produk as $item)
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 col-xxl-4" id="data">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 col-xxl-4" id="data">
+                            <span hidden>{{ strtolower(urlencode($item->category->name)) }}</span>
                             <figure class="card card-product-grid">
                                 <div class="img-wrap" style="height: 216px">
                                     <img src="{{ asset('images/produk/' . $item->foto) }}" class="img-fluid img-produk">
@@ -251,7 +360,8 @@
                 </div> <!-- row end.// -->
                 <div class="row text-center" id="row">
                     @foreach ($produk as $item)
-                        <div class="col-lg-12 card card-product-grid m-2" id="data">
+                    <div class="col-lg-12 card card-product-grid m-2" id="data">
+                            <span hidden>{{ strtolower(urlencode($item->category->name)) }}</span>
                             <div class="row row_item">
                                 <div class="col-sm-4">
                                     <figure>
