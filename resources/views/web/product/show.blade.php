@@ -1,140 +1,8 @@
 @extends('layouts.web.app')
 @section('content')
     {{-- =========================== Custom CSS and JavaScript ============================== --}}
-    <style>
-        .img-produk-show {
-            max-width: 609px;
-            max-height: 499px;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #F1F1F1;
-            border-radius: 30px;
-        }
-
-        .title {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 36px;
-            color: #0D0D0D;
-        }
-
-        .description {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            color: #0D0D0D;
-        }
-    </style>
-    <script>
-        $(document).ready(function() {
-            $('#submitcart').prop('disabled', true);
-            var dateToday = new Date();
-            // var fordate = $(".forDate").datepicker();
-            // console.log(fordate);
-            filterTanggal();
-            $(".forDate,.toDate").change(function() {
-                bacaTanggal();
-            });
-            hapus();
-        });
-    </script>
-    <script>
-        function bacaTanggal() {
-            var fordate = $(".forDate").val();
-            var todate = $(".toDate").val();
-            var harga = $("#harga").text().replace(/[A-Za-z$-/]/g, "");
-            var productId = $('#id_produk').val();
-            console.log(todate);
-            days = (Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24);
-            // Create our number formatter.
-            var formatter = new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-            });
-            total = days * harga;
-            // console.log(total);
-            // console.log('Dari Tanggal: ' + fordate + ' Sampai Tanggal: ' + todate);
-            if(Date.parse(todate) < Date.parse(fordate)){
-                $("#status").text('Input Tanggal tidak sesuai!');
-                $("#total").val('Rp. 0');
-                $("#jumlah_hari").val('0');
-                $('#submitcart').prop('disabled', true);
-            }
-            else if(Date.parse(todate) === Date.parse(fordate)){
-                $("#status").text('Minimal Order 1 Hari!');
-                $("#total").val('Rp. 0');
-                $("#jumlah_hari").val('0');
-                $('#submitcart').prop('disabled', true);
-            }
-            else{
-                $.ajax({
-                    type:'GET',
-                    url:'/ajax/filterdate?start_date=' + fordate + '&end_date=' + todate + '&product_id=' + productId,
-                    data:'_token = <?php echo csrf_token() ?>',
-                    success:function(data) {
-                        $("#status").text(data);
-                        console.log($("#status").text());
-                        if ($("#status").text() === 'Tidak Tersedia'){
-                            $("#total").val('Rp. 0');
-                            $('#submitcart').prop('disabled', true);
-                        }
-                    }
-                });
-                $("#total").val(formatter.format(total));
-                $("#jumlah_hari").val((Date.parse(todate) - Date.parse(fordate)) / (1000 * 60 * 60 * 24));
-                $('#submitcart').prop('disabled', false);
-            }
-        }
-
-        function hapus() {
-            $(".forDate").click(function() {
-                $(".forDate").val("");
-                $(".toDate").val("");
-                filterTanggal();
-            });
-        }
-
-        function filterTanggal() {
-            $(function() {
-                $(".forDate").each(function() {
-                    $(this).datepicker({
-                        locale: "id",
-                        dateFormat: "DD, dd MM yy",
-                        duration: "fast",
-                        regional: "id",
-                        minDate: dateToday,
-                        showAnim: "show",
-                        showStatus: true,
-                        onSelect: function() {
-                            $(this).each(function(){
-                                getdate();
-                            })
-                        }
-                    });
-                })
-            });
-        }
-        function getdate() {
-            var dateObject = $(this).datepicker('getDate');
-                            // console.log(dateObject);
-            $(function() {
-                $(".toDate").each(function() {
-                    $(this).datepicker({
-                        dateFormat: "DD, dd MM yy",
-                        duration: "fast",
-                        minDate: dateObject,
-                        showStatus: true,
-                        showAnim: "slide",
-                    });
-                });
-            });
-        }
-    </script>
-
-
+    <link rel="stylesheet" href="{{ asset('web/css/show_product.css') }}">
+    <script src="{{ asset('web/js/show_product.js') }}"></script>
     {{-- ========================== MAIN CONTENT ------------------------------ --}}
     <div class="container-fluid p-5 mt-3">
         <div class="row mb-4 justify-content-center allign-items-center m-auto">
@@ -153,7 +21,7 @@
                                     @auth
                                         <input type="text" name="user_id" id="user_id" value="{{ auth()->user()->id }}" hidden>
                                     @endauth
-                                    <input type="text" name="product_id" id="id_produk" value="{{ $item->id }}" hidden>                                        
+                                    <input type="text" name="product_id" id="id_produk" value="{{ $item->id }}" hidden>
                                     <input type="text" name="jumlah_hari" id="jumlah_hari" value="" hidden>
                                 </a>
                                 <div class="mt-3 p-2">

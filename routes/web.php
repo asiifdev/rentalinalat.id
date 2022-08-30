@@ -18,7 +18,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.index');
     });
-    
+
     // ================================================================== ROUTES KATEGORI ========================================================
     Route::get('/admin/category', [App\Http\Controllers\CategoryController::class,'index']);
     Route::post('/admin/category/create', [App\Http\Controllers\CategoryController::class,'store'])->name('category.add');
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/admin/category/{id}', [App\Http\Controllers\FilterController::class,'category'])->name('category.sub');
     Route::delete('/admin/category/{id}/delete', [App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
     // -------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     // ================================================================== ROUTES SUBKATEGORI =====================================================
     Route::get('/admin/subcategory', [App\Http\Controllers\SubCategoryController::class,'index']);
     Route::post('/admin/subcategory/create', [App\Http\Controllers\SubCategoryController::class,'store'])->name('subcat.add');
@@ -36,11 +36,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/admin/subcategory/{id}', [App\Http\Controllers\FilterController::class,'produk'])->name('subcat.product');
     Route::get('/admin/subcategory/{id}/edit', [App\Http\Controllers\SubCategoryController::class,'edit'])->name('subcat.edit');
     Route::post('/admin/subcategory/{id}/update', [App\Http\Controllers\SubCategoryController::class,'update'])->name('subcat.update');
-    
+
     // -------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     // ================================================================== ROUTES PRODUK ==========================================================
-    
+
     // Route::resource('admin/product', ProductController::class,['index']);
     Route::get('/admin/product', [App\Http\Controllers\ProductController::class,'index'])->name('admin.product');
     Route::get('/admin/product/active', [App\Http\Controllers\ProductController::class,'statusActive'])->name('product.active');
@@ -54,12 +54,12 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::delete('/admin/product/{id}/forcedelete', [App\Http\Controllers\ProductController::class,'forceDelete'])->name('product.forcedelete');
     Route::get('/admin/product/{id}',[ProductController::class, 'show'])->name('showproduct');
     // -------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     // ================================================================== ROUTES INVOICES =======================================================
     Route::get('/admin/invoices', function () {
         return view('admin.invoices.index');
     });
-    // -------------------------------------------------------------------------------------------------------------------------------------------    
+    // -------------------------------------------------------------------------------------------------------------------------------------------
 });
 
 Route::get('/ajax-subcat',[ProductController::class, 'subCat']);
@@ -72,9 +72,10 @@ Route::post('/subcat',[ProductController::class, 'subCat'])->name('subcat');
 
 Route::get('/',[App\Http\Controllers\WebController::class, 'index'])->name('home');
 Route::get('/product',[App\Http\Controllers\Web\ProductController::class, 'index'])->name('produk');
+Route::get('/contact',[App\Http\Controllers\Web\ContactController::class, 'index'])->name('contact');
 Route::get('/product/{slug}',[App\Http\Controllers\Web\ProductController::class, 'show'])->name('produk.show');
 Route::get('/ajax/filterdate',[App\Http\Controllers\Web\ProductController::class, 'filter'])->name('ajax.filterdate');
-Route::middleware('role:user')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');
-Route::middleware('role:user')->get('/ajax/cart-count',[App\Http\Controllers\CartController::class, 'count'])->name('cart.count');
-Route::middleware('role:user')->get('/ajax/cart-navbar',[App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+Route::middleware('auth')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');
+Route::middleware('auth')->get('/ajax/cart-count',[App\Http\Controllers\CartController::class, 'count'])->name('cart.count');
+Route::middleware('auth')->get('/ajax/cart-navbar',[App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
 // Route::middleware('role:admin')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');

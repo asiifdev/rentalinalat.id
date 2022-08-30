@@ -1,0 +1,56 @@
+.btn-nav-accordion[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.btn-nav-accordion[aria-expanded="true"] .title {
+    color: #CC1522;
+    font-weight: 800;
+}
+
+.kategori[aria-expanded="true"] .fa-chevron-right {
+    transform: rotate(-90deg);
+}
+
+.kategori[aria-expanded="true"] .title {
+    color: #CC1522;
+    font-weight: 800;
+}
+
+.card-header {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    /* border-bottom: 1px solid #CC1522 !important; */
+}
+
+.collapse_1 {
+    border: 1px solid #CC1522 !important;
+}
+
+.tanggal {
+    /* border: 1px solid #CC1522 !important; */
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+}
+
+.filter-content {
+    margin-top: 0px;
+}
+.label_kategori{
+    font-size: 1rem;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0;
+    color: black;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+.form-check-input:checked {
+    background-color: #CC1522;
+    border-color: #CC1522;
+}

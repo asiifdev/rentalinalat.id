@@ -64,10 +64,10 @@
     @yield('content')
 
     <section style="height: 50px;"></section>
-    <hr style="height: 3px; width: 100%;background: #CC1522;margin-top:30px;">
 
     {{-- FOOTER --}}
-    <footer style="bottom: 0">
+    <footer>
+        <hr style="height: 3px; width: 100%;background: #CC1522;margin-top:30px;">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <div class="container">
                 <div class="row text-left">
@@ -182,7 +182,7 @@
             easing: 'swing',
             step: function() {
                 jQuery('.counter1').text(Math.ceil(this.Counter).toLocaleString('de'));
-            }  
+            }
         });
         jQuery({ Counter: 1 }).animate({
             Counter: jQuery('.counter2').text()
@@ -191,7 +191,7 @@
             easing: 'swing',
             step: function() {
                 jQuery('.counter2').text(Math.ceil(this.Counter).toLocaleString('de'));
-            }  
+            }
         });
     </script>
 </body>

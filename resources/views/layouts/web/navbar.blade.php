@@ -1,41 +1,8 @@
 <link rel="stylesheet" href="{{ asset('web/css/responsive.css') }}">
-
-    <script>
-        $(document).ready(function() {
-            count();
-            cart();
-        });
-        function count(){
-            var id = $('#id_user').val();
-            console.log(id);
-            $.ajax({
-                type:'GET',
-                url:'/ajax/cart-count?user_id=' + id,
-                data:'_token = <?php echo csrf_token() ?>',
-                success:function(data) {
-                    $("#cart-total").text(data);
-                    console.log($("#status").text());
-                }
-            });
-        }
-        function cart(){
-            var id = $('#id_user').val();
-            // console.log(id);
-            $.get('/ajax/cart-navbar?user_id=' + id,function(data) {
-                    // $("#cart-total").text(data);
-                    $.each(data,function(){
-                        $.each(this,function(index, value){
-                            $('li a div .col-8 #cart-name').each(function(){
-                                console.log(value.name);
-                                $( this ).text(value.name);
-                            });
-                        });
-                    });
-                }
-            );
-        }
-    </script>
-    
+<script src="{{ asset('web/js/navbar.js') }}"></script>
+    <?php
+        use App\Models\Cart;
+    ?>
     <!-- Navbar - start
     ================================================== -->
     @auth
@@ -61,7 +28,7 @@
                         <a class="nav-link{{ request()->is('product*') ? ' active' : '' }}" href="{{ route('produk') }}">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{{ request()->is('contact') ? ' active' : '' }}" href="#">Contact Us</a>
+                        <a class="nav-link{{ request()->is('contact') ? ' active' : '' }}" href="{{ route('contact') }}">Contact Us</a>
                     </li>
                 </ul>
                 @guest
@@ -72,9 +39,9 @@
                         <a href="" style="color: #CC1522;font-size: 28px;" class="m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-cart3"></i><span id="cart-total" class="badge rounded-pill badge-notification bg-danger count-cart" style="">0</span>
                         </a>
-                        <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink" style="border: 1px solid #CC1522;border-radius: 20px;">
                             <li>
-                                <a class="dropdown-item" href="{{ route('login') }}">  
+                                <a class="dropdown-item" href="{{ route('login') }}">
                                     Login Terlebih Dahulu
                                 </a>
                             </li>
@@ -87,23 +54,28 @@
                             <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1 search-navbar" role="button" data-toggle="collapse" data-target="#searchnavbar" aria-expanded="false">
                                 <i class="bi bi-search"></i>
                             </a>
-
                             <a href="" style="color: #CC1522;font-size: 28px;" class="m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-cart3"></i><span id="cart-total" class="badge rounded-pill badge-notification bg-danger count-cart" style="">0</span>
                             </a>
-                            <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#">  
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="{{ asset('web/images/logo.png') }}" alt="" />
+                            <ul class="dropdown-menu cart-menu" aria-labelledby="dropdownMenuLink" style="border: 1px solid #CC1522;border-radius: 20px;">
+                                <?php
+                                    $cart = Cart::where('user_id', auth()->user()->id)->with('product')->get();
+                                ?>
+                                @foreach ($cart as $item)
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url('product/' . $item->product->slug) }}">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <img src="{{ asset('web/images/produk/' . $item->product->foto ) }}" alt="" />
+                                                </div>
+                                                <div class="col-8">
+                                                    <span id="cart-name">{{ $item->product->name }}</span><br>
+                                                    <span>{{ moneyFormat($item->product->dayRate) }}</span>
+                                                </div>
                                             </div>
-                                            <div class="col-8">
-                                                <span id="cart-name">Nama Item</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     @endif

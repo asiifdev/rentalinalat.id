@@ -244,63 +244,42 @@
 
     <!-- koleksi_section - start
    ================================================== -->
-    <section class="container-fluid">
-        <div class="ms-5 mb-5">
-            <span class="keterangan-card">Koleksi Kami </span>
-        </div>
-        <div class="container-fluid m-0">
-            <div class="row justify-content-center">
-                <div class="col-sm-12 col-xs-5 col-md-7 col-lg-4">
-                    <div class="card-flow mt-3">
-                        <div class="text-center mt-3">
-                            <img src="{{ asset('web/images/koleksi.png') }}" alt="" class="img-fluid"
-                                style="width: 437px;height: 544px;">
+    <section class="container-fluid m-auto p-5">
+        <div class="row p-5">
+            <div class="col-sm-12 col-xs-5 col-md-7 col-lg-4 m-auto">
+                <div class="text-center mt-3 card-flow">
+                    <img src="{{ asset('web/images/index.png') }}" alt="" class="img-fluid"
+                        style="width: 100%;height: 100%;border-radius: 25px;">
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-10 col-md-12 col-lg-8 m-auto">
+                <div class="row m-auto mt-3">
+                    <div class="col-12">
+                        <div class="text-lg-start text-sm-start text-xs-center text-md-center m-auto">
+                            <span
+                                style="font-family: 'Poppins';font-style: normal;color: #000000;font-weight: 300;font-size: 40px;line-height: 60px;">
+                                Rasakan
+                                <span style="color: #CC1522;font-weight: 700;font-size: 40px;line-height: 60px;">Pengalaman <br> Baru</span>
+                                dengan
+                                <span style="color: #CC1522;font-weight: 700;font-size: 40px;line-height: 60px;">Rentalinalat.id</span>
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-xs-10 col-md-10 col-lg-7">
-                    <div class="row">
-                        <div class="col-sm-4 col-xs-3 col-md-4 col-lg-4">
-                            <div class="card-flow mt-3">
-                                <div class="text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-xs-9 col-md-8 col-lg-8">
-                            <div class="m-auto">
-                                <div class="text-center m-5">
-                                    <span
-                                        style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 28px;akan Pengalline-height: 42px;color: #000000;">
-                                        Rasakan
-                                        <span style="color: #CC1522;">Pengalaman Baru</span>
-                                        dengan Rentalinalat.id
-                                    </span>
-                                </div>
-                            </div>
+                <div class="row mt-5">
+                    <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
+                        <div class="text-center mt-3 card-flow">
+                            <img src="{{ asset('web/images/kamera.png') }}" class="" alt="" style="width: 100%; height: 100%;">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
-                            <div class="card-flow mt-3">
-                                <div class="text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
+                    <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
+                        <div class="text-center mt-3 card-flow">
+                            <img src="{{ asset('web/images/kamera.png') }}" alt="" style="width: 100%; height: 100%;">
                         </div>
-                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
-                            <div class="card-flow mt-3">
-                                <div class="text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
-                            <div class="card-flow mt-3">
-                                <div class="text-center mt-3">
-                                    <img src="{{ asset('web/images/kamera.png') }}" alt="">
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 col-md-4 col-lg-4">
+                        <div class="text-center mt-3 card-flow">
+                            <img src="{{ asset('web/images/kamera.png') }}" alt="" style="width: 100%; height: 100%;">
                         </div>
                     </div>
                 </div>
@@ -417,7 +396,7 @@
     <!-- keunggulan_section - end
     ================================================== -->
 
-    
+
     <!-- review_section - start
     ================================================== -->
     <div class="container-fluid" style="background: #CC1522;">

@@ -3679,7 +3679,9 @@ textarea.form-control-lg {
 .dropdown-item:hover, .dropdown-item:focus {
   color: white;
   background-color: #CC1522;
-  transform: translateX(5%);
+  transform: translateX(3%);
+  border-radius: 20px;
+  font-weight: bold;
 }
 .dropdown-logout:hover, .dropdown-logout:focus {
   color: #ffffff;
