@@ -1,5 +1,18 @@
 <link rel="stylesheet" href="{{ asset('web/css/responsive.css') }}">
 <script src="{{ asset('web/js/navbar.js') }}"></script>
+<script>
+    // const ukuran = $(window).width();
+    $(window).ready(function() {
+        if ($(window).width() < 676) {
+            $('#logo-mobile').attr('hidden', false);
+            $('#logo-header').attr('hidden', true);
+        }
+        else {
+            $('#logo-header').attr('hidden', false);
+            $('#logo-mobile').attr('hidden', true);
+        }
+    });
+</script>
     <?php
         use App\Models\Cart;
     ?>
@@ -11,11 +24,12 @@
     <nav class="navbar sticky-top navbar-expand-lg mt-1 navbar-light bg-white">
         <div class="container-fluid justify-content-between">
             <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="{{ url('/') }}">
-                <img src="{{ asset('web/images/logo.png') }}" alt="" width="216" height="45" class="logo-header">
+                <img src="{{ asset('web/images/logo.png') }}" alt="" width="216" height="45" id="logo-header">
+                <img src="{{ asset('images/logo.png') }}" alt="" width="45" height="45" id="logo-mobile" hidden>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation" id="tombol_navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -51,9 +65,10 @@
                 @auth
                     @if (auth()->user()->hasRole('user'))
                         <div class="align-items-center ms-2 me-3 mb-1" style="position: relative;">
-                            <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1 search-navbar" role="button" data-toggle="collapse" data-target="#searchnavbar" aria-expanded="false">
+                            <a href="" style="color: #CC1522;font-size: 27px;text-decoration: none;" class="m-1 search-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#carinavbar" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="bi bi-search"></i>
                             </a>
+                            <input type="text" class="collapse form-control" placeholder="cari" id="carinavbar" style="position: fixed !important;top: 20px;left: 0;right: 0px;width: 45%;margin: auto;">
                             <a href="" style="color: #CC1522;font-size: 28px;" class="m-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-cart3"></i><span id="cart-total" class="badge rounded-pill badge-notification bg-danger count-cart" style="">0</span>
                             </a>
@@ -81,8 +96,8 @@
                     @endif
                 @endauth
             </div>
-            <div class="d-flex align-items-center me-4 collapse" id="navbarSupportedContent">
-                <div class="btn-group flex-collumn" role="group" aria-label="Basic example">
+            <div class="d-flex collapse" id="navbarSupportedContent">
+                <div class="btn-group flex-collumn" role="group" aria-label="Basic example" id="profil_akun">
                     @guest
                         @if (Route::has('login'))
                             <a href="{{ route('login') }}" style="color: #0D0D0D;text-decoration: none;">
@@ -102,11 +117,11 @@
                         @else
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle mb-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <span class="me-1" style="position: relative;bottom: 5px;">{{ Auth::user()->name }}</span>
                                         <i class="bi bi-person-circle" style="color: #CC1522;font-size: 29px;text-decoration: none;"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="position: absolute;" id="isi-list">
                                         <a class="dropdown-item" href="{{ Auth::user()->hasRole('admin') ? '/admin/dashboard' : '/dashboard' }}">
                                             <i class="bi bi-speedometer me-2"></i>Dashboard
                                         </a>
@@ -129,9 +144,5 @@
             </div>
         </div>
     </nav>
-    <div class="ms-5 me-5 collapse ps-5 pe-5" id="searchnavbar">
-        <input type="text" class="p-1 form-control" placeholder="cari">
-    </div>
-
     <!-- Navbar - end
     ================================================== -->

@@ -86,6 +86,31 @@
         /* font-weight: bold; */
         transition: width 2s;
     }
+    @media (max-width: 850px) {
+        .ket-contact{
+            font-size: 15px;
+            padding: 0;
+        }
+        .sub-contact{
+            font-size: 18px;
+            padding: 0;
+        }
+        .contact-information{
+            font-size: 26px;
+            padding: 0;
+        }
+        .h3-contact{
+            font-size: 26px;
+            padding: 0;
+        }
+        .form-label{
+            font-size: 12px;
+            padding: 0;
+        }
+        ::placeholder {
+            font-size: 14px;
+        }
+     }
     </style>
     <script>
         function myMap() {
@@ -101,7 +126,7 @@
 of Simple CSS Waves-->
 <div class="" style="left: 0 !important;overflow: hidden;">
     <div class="row">
-        <div class="col-5 m-auto-contact p-5">
+        <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6 m-auto-contact p-5">
             <div class="position-absolute top-50 translate-middle-y" style="width: 50%;">
                 <h3 class="contact-information">Informasi Kontak</h3>
                 <span class="sub-contact">Phone</span>
@@ -134,7 +159,7 @@ of Simple CSS Waves-->
                 </div>
             </div>
         </div>
-        <div class="col-7 m-auto p-5">
+        <div class="col-xl-7 col-lg-7 col-md-6 col-sm-6 col-6 m-auto p-5">
             <h3 class="h3-contact mb-3 mt-5">Get in Touch</h3>
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
