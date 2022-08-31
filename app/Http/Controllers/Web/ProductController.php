@@ -23,14 +23,9 @@ class ProductController extends Controller
     public function index()
     {
         $data = Category::where('parent_id' , null)->count();
-        // for($i = 0;$i<=($data);$i++)
-        // {
-        //     $id = $i++;
-        // }
-        // dd($id++);
-        $produk = Product::where('status', 'active')->with('category')->get();
+        $produk = Product::where('status', 'active')->with('category')->paginate(6);
         $kategori = Category::where('parent_id', null)->with('parent')->get();
-        // dd($produk);
+        // dd($produk->links());
         return view('web.product.index',[
             'produk' => $produk,
             'kategori' => $kategori,
@@ -43,13 +38,7 @@ class ProductController extends Controller
         $start = Carbon::parse($request->start_date)->format('Y-m-d');
         $end = Carbon::parse($request->end_date)->format('Y-m-d');
         $id_product = $request->product_id;
-
-    //    $data = User::with('customer')->get();
-        // $data = Order::whereBetween('from_date', [$start,$end])->get();
         $test = Invoice::with('product')->where('product_id', $id_product)->whereBetween('fromdate', [$start,$end])->get();
-        // $test = Invoice::with('product')->where('product_id', $id_product)->whereDate('fromdate','>',$start)->whereDate('fromdate','<=',$end)->get();
-        // dd($start);
-        // $cek = Order::where('product_id', $id)->get();
         $json = json_decode($test);
         $empty = new stdClass;
         $kosong = 'Tersedia';
@@ -94,7 +83,6 @@ class ProductController extends Controller
     {
         $produk = Product::where('slug', $slug)->get();
         $related = Product::where('category_id', $produk[0]->category_id)->where('id', '!=', $produk[0]->id)->latest()->limit(4)->get();
-        // dd($related);
         return view('web.product.show',
         [
             'produk' => $produk,

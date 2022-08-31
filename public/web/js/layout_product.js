@@ -1,13 +1,20 @@
 $(document).ready(function() {
     grid();
     var dateToday = new Date();
-     // var fordate = $(".forDate").datepicker();
-     // console.log(fordate);
-     filterTanggal();
-     $(".forDate,.toDate").change(function() {
-             bacaTanggal();
-     });
-     hapus();
+    // var fordate = $(".forDate").datepicker();
+    // console.log(fordate);
+    filterTanggal();
+    $(".forDate,.toDate").change(function() {
+            bacaTanggal();
+    });
+    hapus();
+    $('.small.text-muted').attr('hidden',true);
+    // $('#grid').infiniteScroll({
+    //     // options
+    //     path: 'product?page={{#}}',
+    //     append: '#grid',
+    //     history: false,
+    // });
  });
 function row() {
     $('#row').css('display', '');

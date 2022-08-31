@@ -1,8 +1,40 @@
 @extends('layouts.web.app')
 @section('content')
+    <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="//unpkg.com/jscroll/dist/jquery.jscroll.min.js"></script>
     <script src="{{ asset('web/js/layout_product.js') }}"></script>
     <script src="{{ asset('web/js/filter_tanggal_product.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('web/css/product_page.css') }}">
+    <style>
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #CC1522;
+            border-color: #CC1522;
+            font-weight: bold;
+        }
+        .page-link {
+            position: relative;
+            display: block;
+            color: #CC1522;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #CC1522;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .page-link:hover{
+            z-index: 3;
+            color: #fff;
+            background-color: #CC1522;
+            border-color: #fff;
+            width: 110%;
+            height: 115%;
+            top: -2px;
+        }
+        .page-item.disabled{
+            display: none;
+        }
+    </style>
     <div class="container-fluid p-lg-5 p-0 mt-5 mt-md-0 mt-lg-0">
         <div class="row p-lg-5 p-4">
             <aside class="col-md-5 col-xxl-3 col-lg-4 mt-lg-5 mt-md-5">
@@ -92,7 +124,6 @@
                 </div> <!-- card.// -->
             </aside>
             <main class="col-md-7 col-lg-8">
-
                 <header class="border-bottom mb-4 pb-3">
                     <div class="form-inline">
                         <div class="row mt-lg-0 mt-3">
@@ -120,27 +151,31 @@
                         </div>
                     </div>
                 </header><!-- sect-heading -->
-                <div class="row text-center" id="grid">
+                <div class="produk_list">
+                    <div class="row text-center" id="grid">
                     @foreach ($produk as $item)
                     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 col-xxl-4" id="data">
-                            <span hidden>{{ strtolower(urlencode($item->category->name)) }}</span>
-                            <figure class="card card-product-grid">
-                                <div class="img-wrap" style="height: 216px">
-                                    <img src="{{ asset('images/produk/' . $item->foto) }}" class="img-fluid img-produk">
-                                </div> <!-- img-wrap.// -->
-                                <figcaption class="info-wrap">
-                                    <div class="fix-height listSearch">
-                                        <a href="{{ url('product/' . $item->slug) }}" class="title" id="nama-produk"><b>{{ $item->name }}</b></a>
-                                        <div class="price-wrap mt-4">
-                                            <span class="textProduct">Harga Sewa</span><br>
-                                            <span class="price">{{ moneyFormat($item->dayRate) }}<span
-                                                    class="textDay">/Day</span></span>
-                                        </div> <!-- price-wrap.// -->
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </div> <!-- col.// -->
+                        <span hidden>{{ strtolower(urlencode($item->category->name)) }}</span>
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap" style="height: 216px">
+                                <img src="{{ asset('images/produk/' . $item->foto) }}" class="img-fluid img-produk">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <div class="fix-height listSearch">
+                                    <a href="{{ url('product/' . $item->slug) }}" class="title" id="nama-produk"><b>{{ $item->name }}</b></a>
+                                    <div class="price-wrap mt-4">
+                                        <span class="textProduct">Harga Sewa</span><br>
+                                        <span class="price">{{ moneyFormat($item->dayRate) }}<span
+                                                class="textDay">/Day</span></span>
+                                    </div> <!-- price-wrap.// -->
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
                     @endforeach
+                    <div class="d-flex justify-content-center mt-3">
+                        {!! $produk->links() !!}
+                    </div>
                 </div> <!-- row end.// -->
                 <div class="row text-center" id="row">
                     @foreach ($produk as $item)
@@ -173,7 +208,11 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="d-flex justify-content-center mt-3">
+                        {!! $produk->links() !!}
+                    </div>
                 </div> <!-- row end.// -->
+                </div>
             </main>
         </div>
     </div>

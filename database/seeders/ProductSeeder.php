@@ -62,7 +62,7 @@ class ProductSeeder extends Seeder
             'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
             Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
             ',
-            'foto' => 'produk6.png',
+            'foto' => 'produk4.png',
             'dayRate' => '500000',
             'category_id' => '20',
             'status' => 'Active',
@@ -75,7 +75,7 @@ class ProductSeeder extends Seeder
             'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
             Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
             ',
-            'foto' => 'produk7.png',
+            'foto' => 'logo.png',
             'dayRate' => '200000',
             'category_id' => '20',
             'status' => 'Active',
@@ -88,9 +88,61 @@ class ProductSeeder extends Seeder
             'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
             Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
             ',
-            'foto' => 'produk8.png',
+            'foto' => 'produk6.png',
             'dayRate' => '500000',
             'category_id' => '20',
+            'status' => 'Active',
+            'stock' => '50'
+        ]);
+        Product::create([
+            'kode' => rand(),
+            'name' => 'Bensin',
+            'slug' => Str::slug('Bensin'),
+            'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
+            Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
+            ',
+            'foto' => 'produk7.png',
+            'dayRate' => '500000',
+            'category_id' => '27',
+            'status' => 'Active',
+            'stock' => '50'
+        ]);
+        Product::create([
+            'kode' => rand(),
+            'name' => 'Random',
+            'slug' => Str::slug('Random'),
+            'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
+            Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
+            ',
+            'foto' => 'produk8.png',
+            'dayRate' => '500000',
+            'category_id' => '18',
+            'status' => 'Active',
+            'stock' => '50'
+        ]);
+        Product::create([
+            'kode' => rand(),
+            'name' => 'Tv LED',
+            'slug' => Str::slug('Tv LED'),
+            'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
+            Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
+            ',
+            'foto' => 'logo.png',
+            'dayRate' => '500000',
+            'category_id' => '18',
+            'status' => 'Active',
+            'stock' => '50'
+        ]);
+        Product::create([
+            'kode' => rand(),
+            'name' => 'Mouse Keyboard',
+            'slug' => Str::slug('Mouse Keyboard'),
+            'description' => 'Lörem ipsum kopimism dekande. Laktigt särtad. Adeligt hexas när kupäss. Mak ore. Panesk mikrons vypp stenok. Mivis tende bes om tede.
+            Episyvis povyhäska servicebarn utom tisade. Mösk lav. Nyngen kontranera. Sprita pärlifiera lunde att makrohösat speren. Nepisam telig ifall dona nesk. Pabel klickokrati: egovis lan och solure.
+            ',
+            'foto' => 'image.jpg',
+            'dayRate' => '500000',
+            'category_id' => '21',
             'status' => 'Active',
             'stock' => '50'
         ]);
