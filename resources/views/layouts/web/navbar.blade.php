@@ -13,6 +13,22 @@
         }
     });
 </script>
+<style>
+    .btn-checkout{
+        background: #CC1522;
+        color: white;
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        position: absolute;
+        bottom: 0px;
+    }
+    .btn-checkout:hover{
+        background: white;
+        color: #CC1522;
+        /* font-weight: bold; */
+        border: 0.4px solid #CC1522;
+    }
+</style>
     <?php
         use App\Models\Cart;
     ?>
@@ -76,21 +92,44 @@
                                 <?php
                                     $cart = Cart::where('user_id', auth()->user()->id)->with('product')->get();
                                 ?>
+                                <li class="empty_cart">
+                                    <a href="{{ url('product') }}">
+                                        <span class="dropdown-item">
+                                            Belum ada produk di keranjang
+                                        </span>
+                                    </a>
+                                </li>
                                 @foreach ($cart as $item)
-                                    <li>
+                                    <li class="m-2">
                                         <a class="dropdown-item" href="{{ url('product/' . $item->product->slug) }}">
-                                            <div class="row">
+                                            <div class="row align-items-center">
                                                 <div class="col-3">
-                                                    <img src="{{ asset('web/images/produk/' . $item->product->foto ) }}" alt="" />
+                                                    <img src="{{ asset('web/images/produk/' . $item->product->foto ) }}" alt="{{ $item->product->name }}" class="img-fluid" />
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-7">
                                                     <span id="cart-name">{{ $item->product->name }}</span><br>
-                                                    <span>{{ moneyFormat($item->product->dayRate) }}</span>
+                                                    <span id="cart-prize">{{ moneyFormat($item->product->dayRate) }}</span>
+                                                </div>
+                                                <div class="col-1">
+                                                    <form method="POST" action="{{route('cart.destroy', [$item->id])}}" class="d-inline">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button class="btn btn-sm btn-danger btn-outline-light" type="submit">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </a>
                                     </li>
                                 @endforeach
+                                <div class="mt-5" id="tombol_checkout">
+                                    <button class="btn btn-checkout mt-2" style="">
+                                        <span class="">
+                                            Check Out (<span id="total_price">Rp 0</span>)
+                                        </span>
+                                    </button>
+                                </div>
                             </ul>
                         </div>
                     @endif
@@ -128,9 +167,7 @@
                                         <a class="dropdown-item" href="">
                                             <i class="bi bi-cart me-2"></i> Keranjang
                                         </a>
-                                        <a class="dropdown-item dropdown-logout" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item dropdown-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="bi bi-box-arrow-in-right me-2"></i> {{ __('Logout') }}
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -1,7 +1,8 @@
 $(document).ready(function() {
     count();
-    // cart();
+    total_price();
 });
+
 function count(){
     var id = $('#id_user').val();
     // console.log(id);
@@ -15,20 +16,26 @@ function count(){
         }
     });
 }
-// function cart(){
-//     var id = $('#id_user').val();
-//     // console.log(id);
-//     $.get('/ajax/cart-navbar?user_id=' + id,function(data) {
-//             // $("#cart-total").text(data);
-//             // console.log(data);
-//             $.each(data,function(){
-//                 $.each(this,function(index, value){
-//                     $.each(this, function(){
-//                         $('li a div .col-8').text(value.name);
-//                         console.log(value.name);
-//                     });
-//                 });
-//             });
-//         }
-//     );
-// }
+
+function total_price(){
+    if($('span[id="cart-prize"]').length == 0){
+        $('#tombol_checkout').attr('hidden', true).removeClass('mt-5');
+        $('.empty_cart').attr('hidden', false);
+        console.log('OKAY')
+    }
+    else {
+        $('#tombol_checkout').attr('hidden', false).addClass('mt-5');
+        $('.empty_cart').attr('hidden', true);
+    }
+    var formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumSignificantDigits: 3
+    });
+    var total = 0;
+    $('span[id="cart-prize"]').each(function(){
+        total += parseInt($(this).text().replace(/[A-Za-z$-/]/g, ""));
+     });
+    $('#total_price').attr('style', 'font-weight: bolder;')
+    $('#total_price').text(formatter.format(total));
+}

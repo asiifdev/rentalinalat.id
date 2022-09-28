@@ -103,8 +103,10 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id)
     {
-        //
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return redirect()->back();
     }
 }

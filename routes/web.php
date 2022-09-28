@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\GoogleController;
 use App\Models\Category;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\DB;
@@ -78,4 +79,10 @@ Route::get('/ajax/filterdate',[App\Http\Controllers\Web\ProductController::class
 Route::middleware('auth')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');
 Route::middleware('auth')->get('/ajax/cart-count',[App\Http\Controllers\CartController::class, 'count'])->name('cart.count');
 Route::middleware('auth')->get('/ajax/cart-navbar',[App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{id}/delete', [App\Http\Controllers\CartController::class,'destroy'])->name('cart.destroy');
 // Route::middleware('role:admin')->post('/ajax/cart',[App\Http\Controllers\CartController::class, 'create'])->name('ajax.cart');
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
