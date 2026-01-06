@@ -132,7 +132,7 @@ class ProductController extends Controller
                 $product->name = $request->name;
                 $product->description = $request->description;
                 $product->category_id = $request->category_id;
-                $product->slug = \Str::slug($request->name);
+                $product->slug = Str::slug($request->name);
                 $product->dayRate = $request->dayrate;
                 $product->status = $request->status; 
                 $product->barcode = $barcode;
@@ -151,7 +151,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->description = $request->description;
             $product->category_id = $request->category_id;
-            $product->slug = \Str::slug($request->name);
+            $product->slug = Str::slug($request->name);
             $product->dayRate = $request->dayrate;
             $product->status = $request->status;
             $product->barcode = $barcode;

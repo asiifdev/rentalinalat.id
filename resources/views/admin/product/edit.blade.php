@@ -1,54 +1,57 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    function tambahfoto() {
-        $(".foto-produk").trigger('click');
-    }
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<script type="text/javascript">
-        $(document).ready(function () { 
-            $('#categoryy').on('change',function(e){
-            console.log(e);
-            var cat_id = e.target.value;
-            console.log(cat_id);
-            //ajax
-            $.get('/ajax-subcat?cat_id='+ cat_id,function(data){
-                if(data != 0) {
-                    console.log(data);
-                    //success data
-                    var subcat =  $('#subcategoryy').empty();
-                    $.each(data,function(create,subcatObj){
-                        var option = $('<option/>', {id:create, value:subcatObj});
-                        subcat.append('<option value ="'+subcatObj.id+'" required>'+subcatObj.name+'</option>');
-                    });
-                }
-                else{
-                    
-                    var subcat =  $('#subcategoryy').empty();
-                    $.confirm({
-                        animation: 'zoom',
-                        closeAnimation: 'scale',
-                        title: 'Data Kategori Belum ada',
-                        content: 'Silahkan Buat Terlebih Dahulu',
-                        buttons: {
-                            Baik: function () {
-                                // $.alert('Confirmed!');
-                                window.location="subcategory";
-                            },
-                            'Nanti Saja': function () {
-                                // $.alert('Canceled!');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function tambahfoto() {
+            $(".foto-produk").trigger('click');
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#categoryy').on('change', function(e) {
+                console.log(e);
+                var cat_id = e.target.value;
+                console.log(cat_id);
+                //ajax
+                $.get('/ajax-subcat?cat_id=' + cat_id, function(data) {
+                    if (data != 0) {
+                        console.log(data);
+                        //success data
+                        var subcat = $('#subcategoryy').empty();
+                        $.each(data, function(create, subcatObj) {
+                            var option = $('<option/>', {
+                                id: create,
+                                value: subcatObj
+                            });
+                            subcat.append('<option value ="' + subcatObj.id +
+                                '" required>' + subcatObj.name + '</option>');
+                        });
+                    } else {
+
+                        var subcat = $('#subcategoryy').empty();
+                        $.confirm({
+                            animation: 'zoom',
+                            closeAnimation: 'scale',
+                            title: 'Data Kategori Belum ada',
+                            content: 'Silahkan Buat Terlebih Dahulu',
+                            buttons: {
+                                Baik: function() {
+                                    // $.alert('Confirmed!');
+                                    window.location = "subcategory";
+                                },
+                                'Nanti Saja': function() {
+                                    // $.alert('Canceled!');
+                                }
                             }
-                        }
-                    });
-                }
+                        });
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
     <!-- Start Page Content -->
     <div class="row">
         <div class="col-lg-12">
@@ -56,8 +59,9 @@
                 <div class="card-body">
                     <div class="basic-form">
                         @foreach ($produk as $item)
-                        <form action="{{ url('admin/product/' . $item->id . '/update') }}" method="post" enctype="multipart/form-data">
-                            @csrf
+                            <form action="{{ url('admin/product/' . $item->id . '/update') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
                                     <label for="kode"><span class="ml-2">Kode Produk</span></label>
                                     <input type="number" name="kode" value="{{ $item->kode }}"
@@ -84,7 +88,7 @@
                                         class="form-control input-rounded" placeholder="Masukkan Harga Produk" required>
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('category', 'Kategori Induk :') !!}
+                                    <label for="category">Kategori Induk :</label>
                                     <select name="categoryy" id="categoryy" class="form-control input-rounded">
                                         @if (request()->is('admin/product/' . $item->id . '/edit'))
                                             @foreach ($kategori as $b)
@@ -98,9 +102,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('subcategory', 'Kategori:') !!}
-                                    <select name="category_id" id="subcategoryy" class="form-control input-rounded " required>
-                                        <option value="{{ $item->category->id }}"selected>{{ $item->category->name }}</option>
+                                    <label for="subcategory">Kategori:</label>
+                                    <select name="category_id" id="subcategoryy" class="form-control input-rounded "
+                                        required>
+                                        <option value="{{ $item->category->id }}"selected>{{ $item->category->name }}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -125,14 +131,15 @@
                                     <input class="form-control input-rounded d-flex foto-produk" type="file"
                                         id="foto" name="foto" accept=".jpg,.png,.jpeg" style="visibility: hidden">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{{ url('admin/product') }}" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Product Details">Back To Overview</a>
-                            <button type="submit" class="btn btn-outline-primary">Update</button>
-                        </div>
-                    </form>
-                    @endforeach
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url('admin/product') }}" class="btn btn-dark" data-toggle="tooltip" data-placement="top"
+                        title="Product Details">Back To Overview</a>
+                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                </div>
+                </form>
+                @endforeach
             </div>
         </div>
     </div>
